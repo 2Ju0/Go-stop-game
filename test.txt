@@ -1,2 +1,1 @@
-<<<<<<< HEAD
-mynumber is 201902735
+my number is 201902735
