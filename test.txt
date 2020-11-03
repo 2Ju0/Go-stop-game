@@ -1,14 +1,4 @@
 Hello
 This is test
-<<<<<<< HEAD
-201902734
-=======
 
-my number is 201902701
-<<<<<<< HEAD
-
-conflict test
-
-=======
->>>>>>> 6e66089022716d4be6d39d1dbc5e4ab904e00e5b
->>>>>>> 88852e2c5068f00d99b4e41070dba85d14743cdc
+201902701
