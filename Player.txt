@@ -1,0 +1,29 @@
+#include <iostream>
+#include <stdlib.h>
+
+typedef struct {
+  int _go;
+  int _point;
+}player;
+
+player* player_new(void) {
+  player* _this;
+  _this = (player*)malloc(sizeof(player));
+  return _this;
+}
+
+//몇고인지 체크
+int check_go(player* _this) {
+  return _this->_go;
+};
+//점수
+int calc_point(player* _this) { 
+  int temp;
+
+  return temp;
+};
+//손패
+void hand() {
+
+};
+
