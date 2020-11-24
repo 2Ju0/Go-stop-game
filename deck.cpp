@@ -83,3 +83,4 @@ void Deck::input_deck() {  // 카드 리스트를 덱에 넣기
     deck_list_.push(value);
   }
 }
+
