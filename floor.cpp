@@ -1,48 +1,43 @@
-#include <list>
+#include "floor.h"
 
-#include "hwatoo.cpp"
+void Floor::reset() { floor_list_.clear(); }
 
-class Floor {
- public:
-  Floor() {}
+void Floor::add_card(Hwatoo card) { floor_list_.push_back(card); }
 
-  void reset() { card_list.clear(); }
-
-  void add_card(Hwatoo card) { card_list.push_back(card); }
-
-  void remove_card(Hwatoo card) {
-    for (itor = card_list.begin(); itor != card_list.end(); ++itor) {
-      if ((*itor).is_same(card)) {
-        card_list.erase(itor++);
-        return;
-      } else {
-        itor++;
-      }
+void Floor::remove_card(Hwatoo card) {
+  for (itor = floor_list_.begin(); itor != floor_list_.end(); ++itor) {
+    if ((*itor).is_same(card)) {
+      floor_list_.erase(itor++);
+      return;
+    } else {
+      itor++;
     }
   }
+}
 
-  std::list<Hwatoo> get_card_list() { return this->card_list; }
+bool Floor::is_empty_floor_list() { return this->floor_list_.empty(); }
 
-  void print() {
-    for (itor = card_list.begin(); itor != card_list.end(); ++itor) {
-      std::cout << (*itor).getName() << " " << std::endl;
-    }
+void Floor::print_card_list() {
+  for (itor = floor_list_.begin(); itor != floor_list_.end(); ++itor) {
+    std::cout << (*itor).getName() << " ";
   }
+  std::cout << std::endl;
+}
 
- private:
-  std::list<Hwatoo> card_list;
-  std::list<Hwatoo>::iterator itor;
-};
+// 매개변수로 받은 card와 floor_list에 같은 종류의 카드가 있다면 cnt를 증가하여 반환한다.
+int Floor::same_card_count(Hwatoo card) { 
+  int cnt = 0;
+  for (itor = floor_list_.begin(); itor != floor_list_.end(); ++itor) {
+    if ((*itor).is_same(card)) cnt++;
+  }
+  return cnt;
+}
 
-/*int main() {
-  Floor floor;
-  floor.add_card(Hwatoo("1광"));
-  floor.add_card(Hwatoo("2쌍"));
-  floor.add_card(Hwatoo("jocker"));
-
-  floor.remove_card(Hwatoo("jocker"));
-  floor.print();
-
-  floor.reset();
-  floor.print();
-}*/
+// 매개변수로 받은 card와 floor_list에 같은 종류의 카드가 있다면 변수 list에 저장하여 반환한다.
+std::list<Hwatoo> Floor::same_card_list(Hwatoo card) {
+  std::list<Hwatoo> list;
+  for (itor = floor_list_.begin(); itor != floor_list_.end(); ++itor) {
+    if ((*itor).is_same(card)) list.push_back(*itor);
+  }
+  return list;
+}
