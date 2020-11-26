@@ -17,7 +17,7 @@ void Deck::reset(Hwatoo* card) {  // Deck의 멤버 변수 초기화
   player3.reset();
 }
 
-Hwatoo Deck::pop_card() { // 덱에서 한장 뒤집기
+Hwatoo Deck::pop_card() {  // 덱에서 한장 뒤집기
   Hwatoo card = this->deck_list_.front();
   this->deck_list_.pop();
   return card;
@@ -57,7 +57,21 @@ void Deck::game_start() {  // 게임 시작 전 카드 섞기 + deck(queue)에 �
   std::cout << "<고스톱 게임을 시작합니다>" << std::endl;
   std::cout << "=========================================================="
             << std::endl;
-  // std::cout << "player1의 이름을 설정하세요 : " << std::endl;
+  std::cout << "player1의 이름을 설정하세요 : ";
+  std::string name1, name2, name3;
+  std::cin >> name1;
+  player1.set_name(name1);
+  std::cout << "player1의 이름: " << this->player1.get_name() << std::endl;
+
+  std::cout << "player2의 이름을 설정하세요 : ";
+  std::cin >> name2;
+  player2.set_name(name2);
+  std::cout << "player2의 이름: " << this->player2.get_name() << std::endl;
+
+  std::cout << "player3의 이름을 설정하세요 : ";
+  std::cin >> name3;
+  player3.set_name(name3);
+  std::cout << "player3의 이름: " << this->player3.get_name() << std::endl;
   card_shuffle();
   input_deck();
   divide_card();
