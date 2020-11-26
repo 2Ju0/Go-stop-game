@@ -162,3 +162,4 @@ void Player::cal_total_score() {
   this->cal_D();
   this->cal_P();
 }
+
