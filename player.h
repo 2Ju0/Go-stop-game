@@ -11,8 +11,12 @@ class Player {
   explicit Player(std::string name);
   CardListManager my_card_list_ = CardListManager();
   void reset();
+  void set_name(std::string name);
+  std::string get_name();
   void add_card(Hwatoo card);
-  void throw_card(Hwatoo card);
+  Hwatoo* throw_card(Hwatoo card);
+  int same_card_count_in_hand_list(Hwatoo card);
+  bool is_empty_hand_list();
   int get_go_count();
   void plus_go_count();
   int get_total_score();
