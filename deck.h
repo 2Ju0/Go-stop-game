@@ -32,4 +32,4 @@ class Deck {
   void divide_card();
 };
 
-#endif  // DECK_H
+
