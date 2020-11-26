@@ -1,16 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-<<<<<<< HEAD
 #include <string>
 #include <list>
 #include <iostream>
 #include <queue>
-=======
-#include<string>
-#include <list>
-#include <iostream>
->>>>>>> bc4fd958c9c83ededc94c09ca90b7c70138c5985
 #include "cardListManager.h"
 
 class Player {
@@ -18,15 +12,8 @@ class Player {
   explicit Player(std::string name);
   CardListManager my_card_list_ = CardListManager();
   void reset();
-<<<<<<< HEAD
   void set_name(std::string name);
   std::string get_name();
-=======
-<<<<<<< HEAD
-  std::string get_name();
-=======
->>>>>>> bc4fd958c9c83ededc94c09ca90b7c70138c5985
->>>>>>> 8bb24948096bd31ad65f9c4679e819699ae65ca4
   void add_card(Hwatoo card);
   Hwatoo* throw_card(Hwatoo card);
   int same_card_count_in_hand_list(Hwatoo card);
@@ -36,24 +23,18 @@ class Player {
   int get_total_score();
   void print_hand_list();
   void cal_total_score();
-<<<<<<< HEAD
-  int get_bbuk_count(); // Ãß°¡µÈ ºÎºÐ... »¶ Ä«¿îÆ®°¡ 3ÀÌ¸é °ÔÀÓ ³¡
-  int get_bomb_count(); // Ãß°¡µÈ ºÎºÐ
-=======
->>>>>>> bc4fd958c9c83ededc94c09ca90b7c70138c5985
+
+  int get_bbuk_count(); // ¿¿¿ ¿¿... ¿ ¿¿¿¿ 3¿¿ ¿¿ ¿
+  int get_bomb_count(); // ¿¿¿ ¿¿
 
  private:
   std::list<Hwatoo> hand_list_;
   std::list<Hwatoo>::iterator itor;
   std::string player_name_;
   int go_count_ = 0;
-<<<<<<< HEAD
-  bool winner = false; // winner°¡ trueÀÎ °æ¿ì °ÔÀÓ ³¡!
+  bool winner = false; // winner¿ true¿ ¿¿ ¿¿ ¿!
 
-  // score °ü·Ã
-=======
-  // score ê´€ë ¨
->>>>>>> bc4fd958c9c83ededc94c09ca90b7c70138c5985
+  // score ¿¿
   int score_ = 0;
   int G_point_ = 0;
   int except_point_ = 0;
@@ -65,11 +46,10 @@ class Player {
   int make_godori_ = 0;
   int P_point_ = 0;
   int bbuk_count_ = 0;
-<<<<<<< HEAD
-  int bomb_count_ = 0; // Ãß°¡µÈ ºÎºÐ
+  int bomb_count_ = 0; // ¿¿¿ ¿¿bock¿¿ ¿¿¿¿ ¿¿
 
-  // Ãß°¡ µÈ ºÎºÐ
-  // ÆøÅº ¹× ÃÑÅëÈ®ÀÎ
+  // ¿¿¿ ¿¿
+  // ¿¿ ¿ ¿¿¿¿
   int check_1 = 0;
   int check_2 = 0;
   int check_3 = 0;
@@ -83,20 +63,12 @@ class Player {
   int check_11 = 0;
   int check_12 = 0;
 
-=======
->>>>>>> bc4fd958c9c83ededc94c09ca90b7c70138c5985
   void cal_G();
   void cal_D();
   void cal_M();
   void cal_P();
-<<<<<<< HEAD
-  void check_bomb(); // Ãß°¡µÈ ºÎºÐ
-  void check_chongtong(); // Ãß°¡µÈ ºÎºÐ
+  void check_bomb(); // ¿¿¿ ¿¿
+  void check_chongtong(); // ¿¿¿ ¿¿
 };
 
 #endif  // PLAYER_H
-=======
-};
-
-#endif  // PLAYER_H
->>>>>>> bc4fd958c9c83ededc94c09ca90b7c70138c5985
