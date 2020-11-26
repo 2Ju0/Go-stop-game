@@ -11,8 +11,10 @@ class CardListManager {
   std::list<Hwatoo> get_m_list();
   std::list<Hwatoo> get_d_list();
   std::list<Hwatoo> get_p_list();
-  void add_card(Hwatoo card);
-  Hwatoo steal_card();
+  std::list<Hwatoo> get_list_type(Hwatoo card);
+  void add_card(Hwatoo* card);
+  Hwatoo* steal_card();
+  void remove_card(Hwatoo* card);
   void print_g_list();
   void print_m_list();
   void print_d_list();
