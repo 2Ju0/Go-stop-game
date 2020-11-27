@@ -2,46 +2,83 @@
 
 Player::Player(std::string name) : player_name_(name) {}  // Constructor
 
-void Player::reset() {  // player ∏‚πˆ ∫Øºˆ √ ±‚»≠
+void Player::reset() {  // player Î©§Î≤Ñ Î≥ÄÏàò Ï¥àÍ∏∞Ìôî
   this->hand_list_.clear();
-  this->go_count_ = 0;
   this->score_ = 0;
+  this->G_point_ = 0;
+  this->except_point_ = 0;
+  this->D_point_ = 0;
+  this->make_cheongdan_ = 0;
+  this->make_hongdan_ = 0;
+  this->make_chodan_ = 0;
+  this->M_point_ = 0;
+  this->make_godori_ = 0;
+  this->P_point_ = 0;
+  this->bbuk_count_ = 0;
+  this->shaking_count_ = 0;
 }
+
+void Player::set_name(std::string name) { this->player_name_ = name; }
 
 std::string Player::get_name() { return this->player_name_; }
 
-void Player::add_card(Hwatoo card) {  // plyaer¿« º’∆– ∏ÆΩ∫∆Æø° ƒ´µÂ √ﬂ∞°
+void Player::add_card(Hwatoo card) {  // playerÏùò ÏÜêÌå® Î¶¨Ïä§Ìä∏Ïóê Ïπ¥Îìú Ï∂îÍ∞Ä
   hand_list_.push_back(card);
 }
 
-void Player::throw_card(
-    Hwatoo card) {  // player¿« º’∆– ∏ÆΩ∫∆Æø°º≠ ∆Ø¡§ ƒ´µÂ ªË¡¶
+Hwatoo* Player::throw_card(Hwatoo card) {  // playerÏùò ÏÜêÌå® Î¶¨Ïä§Ìä∏ÏóêÏÑú ÌäπÏ†ï Ïπ¥Îìú
+                                           // ÏÇ≠Ï†ú, ÏÇ≠Ï†úÌïú Ïπ¥Îìú Ï£ºÏÜå Î∞òÌôò
   for (itor = hand_list_.begin(); itor != hand_list_.end(); ++itor) {
     if ((*itor).is_same(card)) {
+      Hwatoo removed_card = (*itor);
       hand_list_.erase(itor++);
-      return;
+      return &card;
     } else {
       itor++;
     }
   }
+  return nullptr;  // ÌäπÏ†ï Ïπ¥ÎìúÍ∞Ä ÏóÜÎã§Î©¥ nullptr Î∞òÌôò
 }
 
-int Player::get_go_count() { return this->go_count_; }  // ∏Ó go¿Œ¡ˆ »Æ¿Œ
+int Player::same_card_count_in_hand_list(Hwatoo card) {
+  int cnt = 0;
+  for (itor = this->hand_list_.begin(); itor != this->hand_list_.end();
+       ++itor) {
+    if ((*itor).is_same(card)) {
+      cnt++;
+    }
+  }
+  return cnt;
+}
 
-void Player::plus_go_count() { this->go_count_++; }  // go ∞™ ¡ı∞°
+bool Player::is_empty_hand_list() { return this->hand_list_.empty(); }
 
-void Player::print_hand_list() {  // player¿« ƒ´µÂ ∏ÆΩ∫∆Æ √‚∑¬
+int Player::get_go_count() { return this->go_count_; }  // Î™á goÏù∏ÏßÄ ÌôïÏù∏
+
+void Player::plus_go_count() { this->go_count_++; }  // go Í∞í Ï¶ùÍ∞Ä
+
+void Player::print_hand_list() {  // playerÏùò Ïπ¥Îìú Î¶¨Ïä§Ìä∏ Ï∂úÎ†•
   for (itor = hand_list_.begin(); itor != hand_list_.end(); ++itor) {
     std::cout << (*itor).getName() << " ";
   }
   std::cout << std::endl;
 }
 
-int Player::get_total_score() { return this->score_; }  // player ¡°ºˆ π›»Ø
+std::list<Hwatoo> Player::get_hand_list() { return this->hand_list_; }
+
+int Player::get_total_score() { return this->score_; }  // player Ï†êÏàò Î∞òÌôò
 
 int Player::get_bbuk_count() { return this->bbuk_count_; }
 
-int Player::get_bomb_count() { return this->bomb_count_; }
+void Player::plus_bbuk_count() { this->bbuk_count_++; }
+
+int Player::get_shaking_count() { return this->shaking_count_; }
+
+void Player::reset_shaking_count() { this->shaking_count_ = 0; }
+
+void Player::plus_shaking_count() { this->shaking_count_++; }
+
+void Player::is_winner(bool winner) { this->winner = winner; }
 
 void Player::cal_G() {
   std::list<Hwatoo> list = this->my_card_list_.get_g_list();
@@ -62,7 +99,7 @@ void Player::cal_G() {
 
   if (this->G_point_ == 2 && this->except_point_ == 1) {
     this->score_ += 2;
-    //∫Ò±§ 1∞≥øÕ ¥Ÿ∏• ¡æ∑˘¿« ±§2∞≥ ∏‘¿∫ ∞ÊøÏ
+    //ÎπÑÍ¥ë 1Í∞úÏôÄ Îã§Î•∏ Ï¢ÖÎ•òÏùò Í¥ë2Í∞ú Î®πÏùÄ Í≤ΩÏö∞
   } else if (this->G_point_ == 4 && this->except_point_ == 1) {
     this->score_ += 15;
   } else if (this->G_point_ >= 3) {
@@ -73,7 +110,7 @@ void Player::cal_G() {
 void Player::cal_D() {
   std::list<Hwatoo> list = this->my_card_list_.get_d_list();
   for (itor = list.begin(); itor != list.end(); ++itor) {
-    // √ª¥‹ »Æ¿Œ
+    // Ï≤≠Îã® ÌôïÏù∏
     char month = (*itor).getMonth();
     if (month == '6') {
       this->make_cheongdan_++;
@@ -85,7 +122,7 @@ void Player::cal_D() {
       this->make_cheongdan_++;
       continue;
     }
-    // »´¥‹ »Æ¿Œ
+    // ÌôçÎã® ÌôïÏù∏
     if (month == '1') {
       this->make_hongdan_++;
       continue;
@@ -97,7 +134,7 @@ void Player::cal_D() {
       continue;
     }
 
-    // √ ¥‹ »Æ¿Œ
+    // Ï¥àÎã® ÌôïÏù∏
     if (month == '4') {
       this->make_chodan_++;
       continue;
@@ -120,7 +157,7 @@ void Player::cal_D() {
   if (this->make_chodan_ == 3) {
     this->score_ += 3;
   }
-  if (this->D_point_ >= 5) {  // ∂Ï∞° 5¿Â ¿ÃªÛ¿Œ ∞ÊøÏ
+  if (this->D_point_ >= 5) {  // Îù†Í∞Ä 5Ïû• Ïù¥ÏÉÅÏù∏ Í≤ΩÏö∞
     this->score_ += (this->D_point_ - 4);
   }
 }
@@ -138,10 +175,10 @@ void Player::cal_M() {
     }
   }
   M_point_ = list.size();
-  if (this->make_godori_ == 3) {  // ∞Ìµµ∏Æ ∞ËªÍ
+  if (this->make_godori_ == 3) {  // Í≥†ÎèÑÎ¶¨ Í≥ÑÏÇ∞
     this->score_ += 5;
   }
-  if (this->M_point_ >= 5) {  // ∏€¿Ã 5∞≥ ¿ÃªÛ¿Œ ∞ÊøÏ
+  if (this->M_point_ >= 5) {  // Î©çÏù¥ 5Í∞ú Ïù¥ÏÉÅÏù∏ Í≤ΩÏö∞
     this->score_ += (this->M_point_ - 4);
   }
 }
@@ -150,134 +187,22 @@ void Player::cal_P() {
   std::list<Hwatoo> list = this->my_card_list_.get_p_list();
   for (itor = list.begin(); itor != list.end(); ++itor) {
     std::string kind = (*itor).getKind();
-    if (kind == "Ω÷") {
+    if (kind == "Ïåç") {
       this->P_point_ += 2;
     } else {
       this->P_point_ += 1;
     }
-    if (this->P_point_ >= 10) {  // ««∞° 10∞≥ ¿ÃªÛ¿Œ ∞ÊøÏ
+    if (this->P_point_ >= 10) {  // ÌîºÍ∞Ä 10Í∞ú Ïù¥ÏÉÅÏù∏ Í≤ΩÏö∞
       this->score_ += (this->P_point_ - 9);
     }
   }
 }
 
-// ºˆ¡§µ» ∫Œ∫–
-void Player::cal_total_score() { 
+void Player::cal_total_score() {
   this->score_ = 0;
-  this->score_ += this->get_go_count(); // ∞Ìµµ ¡°ºˆø° ∆˜«‘µ 
   this->cal_G();
   this->cal_M();
   this->cal_D();
   this->cal_P();
 }
-// √ﬂ∞°µ» ∫Œ∫–
-void Player::check_bomb() {
-  for (itor = hand_list_.begin(); itor != hand_list_.end(); ++itor) {
-    switch ((*itor).getMonth()) {
-      case 1:
-        check_1++;
-        continue;
-      case 2:
-        check_2++;
-        continue;
-      case 3:
-        check_3++;
-        continue;
-      case 4:
-        check_4++;
-        continue;
-      case 5:
-        check_5++;
-        continue;
-      case 6:
-        check_6++;
-        continue;
-      case 7:
-        check_7++;
-        continue;
-      case 8:
-        check_8++;
-        continue;
-      case 9:
-        check_9++;
-        continue;
-      case 10:
-        check_10++;
-        continue;
-      case 11:
-        check_11++;
-        continue;
-      case 12:
-        check_12++;
-        continue;
-    }
-  }
-  bomb_count_ = 0; // ∏ﬁº“µÂ Ω««‡«“∂ß «◊ªÛ √ ±‚»≠
-  if (check_1 == 3) bomb_count_++;
-  if (check_2 == 3) bomb_count_++;
-  if (check_3 == 3) bomb_count_++;
-  if (check_4 == 3) bomb_count_++;
-  if (check_5 == 3) bomb_count_++;
-  if (check_6 == 3) bomb_count_++;
-  if (check_7 == 3) bomb_count_++;
-  if (check_8 == 3) bomb_count_++;
-  if (check_9 == 3) bomb_count_++;
-  if (check_10 == 3) bomb_count_++;
-  if (check_11 == 3) bomb_count_++;
-  if (check_12 == 3) bomb_count_++;
-}
-// √ﬂ∞°µ» ∫Œ∫–
-void Player::check_chongtong() {
-  for (itor = hand_list_.begin(); itor != hand_list_.end(); ++itor) {
-    switch ((*itor).getMonth()) {
-      case 1:
-        check_1++;
-        continue;
-      case 2:
-        check_2++;
-        continue;
-      case 3:
-        check_3++;
-        continue;
-      case 4:
-        check_4++;
-        continue;
-      case 5:
-        check_5++;
-        continue;
-      case 6:
-        check_6++;
-        continue;
-      case 7:
-        check_7++;
-        continue;
-      case 8:
-        check_8++;
-        continue;
-      case 9:
-        check_9++;
-        continue;
-      case 10:
-        check_10++;
-        continue;
-      case 11:
-        check_11++;
-        continue;
-      case 12:
-        check_12++;
-        continue;
-    }
-  }
-  if (check_1 == 4) winner = true;
-  if (check_2 == 4) winner = true;
-  if (check_3 == 4) winner = true;
-  if (check_4 == 4) winner = true;
-  if (check_5 == 4) winner = true;
-  if (check_6 == 4) winner = true;
-  if (check_7 == 4) winner = true;
-  if (check_8 == 4) winner = true;
-  if (check_9 == 4) winner = true;
-  if (check_10 == 4) winner = true;
-  if (check_11 == 4) winner = true;
-  if (check_12 == 4) winner = true;
-}
+
