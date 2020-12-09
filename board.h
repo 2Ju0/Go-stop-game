@@ -2,12 +2,16 @@
 #define BOARD_H
 
 #include <iostream>
+#include <string>
 
-#include "floor.h"
-#include "player.h"
+#include "deck.h"
 
 class Board {
-  public:
-  void printBoard(Floor floor, Player player1, Player player2, Player player3);
+public:
+  void gameStart(Deck* deck);
+  void gameOver();
+  void printPlayer(Player player);
+  void printFloor(Floor floor);
+  void line();
 };
-#endif // BOARD_H
+#endif  // BOARD_H
