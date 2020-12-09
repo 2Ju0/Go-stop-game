@@ -6,22 +6,22 @@
 
 int main() {
   Hwatoo card[48] = {
-      Hwatoo("1±¤"), Hwatoo("1¶ì"), Hwatoo("1ÇÇ"), Hwatoo("1ÇÇ"), Hwatoo("2¸Û"),
-      Hwatoo("2¶ì"), Hwatoo("2ÇÇ"), Hwatoo("2ÇÇ"), Hwatoo("3±¤"), Hwatoo("3¶ì"),
-      Hwatoo("3ÇÇ"), Hwatoo("3ÇÇ"), Hwatoo("4¸Û"), Hwatoo("4¶ì"), Hwatoo("4ÇÇ"),
-      Hwatoo("4ÇÇ"), Hwatoo("5¸Û"), Hwatoo("5¶ì"), Hwatoo("5ÇÇ"), Hwatoo("5ÇÇ"),
-      Hwatoo("6¸Û"), Hwatoo("6¶ì"), Hwatoo("6ÇÇ"), Hwatoo("6ÇÇ"), Hwatoo("7¸Û"),
-      Hwatoo("7¶ì"), Hwatoo("7ÇÇ"), Hwatoo("7ÇÇ"), Hwatoo("8±¤"), Hwatoo("8¸Û"),
-      Hwatoo("8ÇÇ"), Hwatoo("8ÇÇ"), Hwatoo("9½Ö"), Hwatoo("9¶ì"), Hwatoo("9ÇÇ"),
-      Hwatoo("9ÇÇ"), Hwatoo("P¸Û"), Hwatoo("P¶ì"), Hwatoo("PÇÇ"), Hwatoo("PÇÇ"),
-      Hwatoo("D±¤"), Hwatoo("DÇÇ"), Hwatoo("DÇÇ"), Hwatoo("D½Ö"), Hwatoo("B±¤"),
-      Hwatoo("B¸Û"), Hwatoo("B¶ì"), Hwatoo("B½Ö") };
+      Hwatoo("1ê´‘"), Hwatoo("1ë "), Hwatoo("1í”¼"), Hwatoo("1í”¼"), Hwatoo("2ë©"),
+      Hwatoo("2ë "), Hwatoo("2í”¼"), Hwatoo("2í”¼"), Hwatoo("3ê´‘"), Hwatoo("3ë "),
+      Hwatoo("3í”¼"), Hwatoo("3í”¼"), Hwatoo("4ë©"), Hwatoo("4ë "), Hwatoo("4í”¼"),
+      Hwatoo("4í”¼"), Hwatoo("5ë©"), Hwatoo("5ë "), Hwatoo("5í”¼"), Hwatoo("5í”¼"),
+      Hwatoo("6ë©"), Hwatoo("6ë "), Hwatoo("6í”¼"), Hwatoo("6í”¼"), Hwatoo("7ë©"),
+      Hwatoo("7ë "), Hwatoo("7í”¼"), Hwatoo("7í”¼"), Hwatoo("8ê´‘"), Hwatoo("8ë©"),
+      Hwatoo("8í”¼"), Hwatoo("8í”¼"), Hwatoo("9ìŒ"), Hwatoo("9ë "), Hwatoo("9í”¼"),
+      Hwatoo("9í”¼"), Hwatoo("Pë©"), Hwatoo("Pë "), Hwatoo("Pí”¼"), Hwatoo("Pí”¼"),
+      Hwatoo("Dê´‘"), Hwatoo("Dí”¼"), Hwatoo("Dí”¼"), Hwatoo("DìŒ"), Hwatoo("Bê´‘"),
+      Hwatoo("Bë©"), Hwatoo("Bë "), Hwatoo("BìŒ")};
   Hwatoo* free = new Hwatoo("FREE");
 
-  Deck deck = Deck(card);    // Deck °´Ã¼ »ı¼º
-  Board board = Board();     // Board °´Ã¼ »ı¼º
-  Rule rule = Rule();        // Rule °´Ã¼ »ı¼º
-  Result result = Result();  // Result °´Ã¼ »ı¼º
+  Deck deck = Deck(card);    // Deck ê°ì²´ ìƒì„±
+  Board board = Board();     // Board ê°ì²´ ìƒì„±
+  Rule rule = Rule();        // Rule ê°ì²´ ìƒì„±
+  Result result = Result();  // Result ê°ì²´ ìƒì„±
   std::vector<Player*> player_list;
   int card_index;
   std::vector<Hwatoo>::iterator itor;
@@ -30,47 +30,45 @@ int main() {
   player_list.push_back(&deck.player1);
   player_list.push_back(&deck.player2);
   player_list.push_back(&deck.player3);
-  // game ½ÃÀÛ
+  // game ì‹œì‘
   board.gameStart(&deck);
-  std::cout << " Àç°æ±âÀÎ °æ¿ì, ¸î °æ±âÂ° Àç°æ±âÀÎÁö Àû¾îÁÖ¼¼¿ä!" << std::endl;
-  std::cout << " Àç°æ±â°¡ ¾Æ´Ñ °æ¿ì, 0À» ÀÔ·ÂÇØÁÖ¼¼¿ä! >> ";
+  std::cout << " ì¬ê²½ê¸°ì¸ ê²½ìš°, ëª‡ ê²½ê¸°ì§¸ ì¬ê²½ê¸°ì¸ì§€ ì ì–´ì£¼ì„¸ìš”!" << std::endl;
+  std::cout << " ì¬ê²½ê¸°ê°€ ì•„ë‹Œ ê²½ìš°, 0ì„ ì…ë ¥í•´ì£¼ì„¸ìš”! >> ";
   std::cin >> result.number_of_game_;
   std::cout << std::endl;
 
-  // ÃÑÅë È®ÀÎ
+  // ì´í†µ í™•ì¸
   rule.checkChongtong(&deck.player1);
   rule.checkChongtong(&deck.player2);
   rule.checkChongtong(&deck.player3);
 
   if (deck.player1.winner_) {
-    std::cout << " [" << deck.player1.getName() << "]°¡ ÃÑÅëÀ¸·Î ½Â¸®Çß½À´Ï´Ù."
-      << std::endl;
-    std::cout << " [" << deck.player2.getName() << "]°¡ 3 point¸¦ ÀÒ½À´Ï´Ù."
-      << std::endl;
-    std::cout << " [" << deck.player3.getName() << "]°¡ 3 point¸¦ ÀÒ½À´Ï´Ù."
-      << std::endl;
-  }
-  else if (deck.player2.winner_) {
-    std::cout << " [" << deck.player2.getName() << "]°¡ ÃÑÅëÀ¸·Î ½Â¸®Çß½À´Ï´Ù."
-      << std::endl;
-    std::cout << " [" << deck.player1.getName() << "]°¡ 3 point¸¦ ÀÒ½À´Ï´Ù."
-      << std::endl;
-    std::cout << " [" << deck.player3.getName() << "]°¡ 3 point¸¦ ÀÒ½À´Ï´Ù."
-      << std::endl;
-  }
-  else if (deck.player2.winner_) {
-    std::cout << " [" << deck.player3.getName() << "]°¡ ÃÑÅëÀ¸·Î ½Â¸®Çß½À´Ï´Ù."
-      << std::endl;
-    std::cout << " [" << deck.player1.getName() << "]°¡ 3 point¸¦ ÀÒ½À´Ï´Ù."
-      << std::endl;
-    std::cout << " [" << deck.player2.getName() << "]°¡ 3 point¸¦ ÀÒ½À´Ï´Ù."
-      << std::endl;
+    std::cout << " [" << deck.player1.getName() << "]ê°€ ì´í†µìœ¼ë¡œ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤."
+              << std::endl;
+    std::cout << " [" << deck.player2.getName() << "]ê°€ 3 pointë¥¼ ìƒìŠµë‹ˆë‹¤."
+              << std::endl;
+    std::cout << " [" << deck.player3.getName() << "]ê°€ 3 pointë¥¼ ìƒìŠµë‹ˆë‹¤."
+              << std::endl;
+  } else if (deck.player2.winner_) {
+    std::cout << " [" << deck.player2.getName() << "]ê°€ ì´í†µìœ¼ë¡œ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤."
+              << std::endl;
+    std::cout << " [" << deck.player1.getName() << "]ê°€ 3 pointë¥¼ ìƒìŠµë‹ˆë‹¤."
+              << std::endl;
+    std::cout << " [" << deck.player3.getName() << "]ê°€ 3 pointë¥¼ ìƒìŠµë‹ˆë‹¤."
+              << std::endl;
+  } else if (deck.player2.winner_) {
+    std::cout << " [" << deck.player3.getName() << "]ê°€ ì´í†µìœ¼ë¡œ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤."
+              << std::endl;
+    std::cout << " [" << deck.player1.getName() << "]ê°€ 3 pointë¥¼ ìƒìŠµë‹ˆë‹¤."
+              << std::endl;
+    std::cout << " [" << deck.player2.getName() << "]ê°€ 3 pointë¥¼ ìƒìŠµë‹ˆë‹¤."
+              << std::endl;
   }
 
   while (1) {
     if (deck.player1.winner_ || deck.player2.winner_ || deck.player3.winner_ ||
-      end) {
-      // ½ÂÀÚ°¡ °áÁ¤µÈ °æ¿ì or ½ÂÀÚ°¡ °áÁ¤µÇÁö ¾ÊÀº °æ¿ì
+        end) {
+      // ìŠ¹ìê°€ ê²°ì •ëœ ê²½ìš° or ìŠ¹ìê°€ ê²°ì •ë˜ì§€ ì•Šì€ ê²½ìš°
       board.gameOver();
       break;
     }
@@ -86,420 +84,390 @@ int main() {
       board.printPlayer(*now_p_);
 
       std::cout << " [" << (*player_list[i]).getName()
-        << "]ÀÇ ¼ø¼­ÀÔ´Ï´Ù. ³¾ Ä«µå ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä." << std::endl
-        << " ¹İµå½Ã ¹®ÀÚ°¡ ¾Æ´Ñ ¼ıÀÚ·Î ÀÔ·ÂÇÏ¼¼¿ä >> ";
-      std::cin >> card_index;  // player°¡ ¿øÇÏ´Â Ä«µå ÇÑÀåÀ» ³½´Ù
+                << "]ì˜ ìˆœì„œì…ë‹ˆë‹¤. ë‚¼ ì¹´ë“œ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”." << std::endl
+                << " ë°˜ë“œì‹œ ë¬¸ìê°€ ì•„ë‹Œ ìˆ«ìë¡œ ì…ë ¥í•˜ì„¸ìš” >> ";
+      std::cin >> card_index;  // playerê°€ ì›í•˜ëŠ” ì¹´ë“œ í•œì¥ì„ ë‚¸ë‹¤
       std::cout << std::endl;
 
-      // ÀÔ·ÂÇÑ ¼ıÀÚ°¡ À¯È¿ÇÑÁö È®ÀÎ
+      // ì…ë ¥í•œ ìˆ«ìê°€ ìœ íš¨í•œì§€ í™•ì¸
       while (1) {
         if (card_index >= 0 &&
-          card_index < player_list[i]->getHandList().size()) {
+            card_index < player_list[i]->getHandList().size()) {
           break;
-        }
-        else {
-          std::cout << " À¯È¿ÇÑ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏÁö ¾Ê¾Ò½À´Ï´Ù. ³¾ Ä«µå ¹øÈ£¸¦ "
-            "´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä. >> ";
+        } else {
+          std::cout << " ìœ íš¨í•œ ìˆ«ìë¥¼ ì…ë ¥í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ë‚¼ ì¹´ë“œ ë²ˆí˜¸ë¥¼ "
+                       "ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”. >> ";
           std::cin >> card_index;
         }
       }
 
-      // »ÌÀº Ä«µå¸¦ pick_card¿¡ ÀúÀå
+      // ë½‘ì€ ì¹´ë“œë¥¼ pick_cardì— ì €ì¥
       Hwatoo pick_card = now_p_->getHandList()[card_index];
-      std::cout << " »ÌÀº Ä«µå: [" << pick_card.getMonth()
-        << pick_card.getKind() << "]" << std::endl
-        << std::endl;
+      std::cout << " ë½‘ì€ ì¹´ë“œ: [" << pick_card.getMonth()
+                << pick_card.getKind() << "]" << std::endl
+                << std::endl;
 
-      // player°¡ deck¿¡¼­ Ä«µå ÇÑÀåÀ» µÚÁı´Â ´Ü°è
+      // playerê°€ deckì—ì„œ ì¹´ë“œ í•œì¥ì„ ë’¤ì§‘ëŠ” ë‹¨ê³„
       Hwatoo deck_card = deck.deck_list_.front();
       deck.deck_list_.pop();
-      std::cout << " deck¿¡¼­ µÚÁıÀº Ä«µå: [" << deck_card.getMonth()
-        << deck_card.getKind() << "]" << std::endl
-        << std::endl;
+      std::cout << " deckì—ì„œ ë’¤ì§‘ì€ ì¹´ë“œ: [" << deck_card.getMonth()
+                << deck_card.getKind() << "]" << std::endl
+                << std::endl;
 
-      // FREE Ä«µå¸¦ ³½ °æ¿ì
+      // FREE ì¹´ë“œë¥¼ ë‚¸ ê²½ìš°
       if (pick_card.isSame(*free)) {
         player_list[i]->removeCard(pick_card);
-        std::cout << " (¾Æ¹«°Íµµ ³»Áö ¾Ê°í, draw¸¸ Çàµ¿ÇØ ";
+        std::cout << " (ì•„ë¬´ê²ƒë„ ë‚´ì§€ ì•Šê³ , drawë§Œ í–‰ë™í•´ ";
         if (deck.floor.sameCardCount(deck_card) == 0) {
-          std::cout << "µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 0°³ °°Àº °æ¿ì)"
-            << std::endl
-            << std::endl;
+          std::cout << "ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 0ê°œ ê°™ì€ ê²½ìš°)"
+                    << std::endl
+                    << std::endl;
           deck.floor.addCard(deck_card);
-        }
-        else if (deck.floor.sameCardCount(deck_card) == 1) {
-          std::cout << "µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 1°³ °°Àº °æ¿ì)"
-            << std::endl
-            << std::endl;
+        } else if (deck.floor.sameCardCount(deck_card) == 1) {
+          std::cout << "ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 1ê°œ ê°™ì€ ê²½ìš°)"
+                    << std::endl
+                    << std::endl;
           now_p_->my_card_list_.eatCard(&deck_card);
           rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-        }
-        else if (deck.floor.sameCardCount(deck_card) == 2) {
-          std::cout << "µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 2°³ °°Àº °æ¿ì)"
-            << std::endl
-            << std::endl;
+        } else if (deck.floor.sameCardCount(deck_card) == 2) {
+          std::cout << "ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 2ê°œ ê°™ì€ ê²½ìš°)"
+                    << std::endl
+                    << std::endl;
           now_p_->my_card_list_.eatCard(&deck_card);
           rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-        }
-        else if (deck.floor.sameCardCount(deck_card) == 3) {
-          std::cout << "µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 3°³ °°Àº °æ¿ì)"
-            << std::endl
-            << std::endl;
+        } else if (deck.floor.sameCardCount(deck_card) == 3) {
+          std::cout << "ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 3ê°œ ê°™ì€ ê²½ìš°)"
+                    << std::endl
+                    << std::endl;
           now_p_->my_card_list_.eatCard(&deck_card);
           rule.getCardsFromFloor(&deck, now_p_, &deck_card);
           rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-          std::cout << " °¨»çÇÕ´Ï´Ù!! ÇÑ¹ø¿¡ 4ÀåÀ» ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-            << std::endl
-            << std::endl;
+          std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! í•œë²ˆì— 4ì¥ì„ ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                    << std::endl
+                    << std::endl;
         }
         continue;
       }
 
       if (now_p_->sameCardCountInHandList(pick_card) ==
-        3) {  // ¼ÕÆĞ¿¡ °°Àº Á¾·ùÀÇ Ä«µå°¡ 3Àå ÀÖ´Â °æ¿ì
-        std::cout << " (¼ÕÆĞ¿¡ °°Àº Á¾·ùÀÇ Ä«µå°¡ 3°³°¡ ÀÖ¾î" << std::endl
-          << std::endl;
+          3) {  // ì†íŒ¨ì— ê°™ì€ ì¢…ë¥˜ì˜ ì¹´ë“œê°€ 3ì¥ ìˆëŠ” ê²½ìš°
+        std::cout << " (ì†íŒ¨ì— ê°™ì€ ì¢…ë¥˜ì˜ ì¹´ë“œê°€ 3ê°œê°€ ìˆì–´" << std::endl
+                  << std::endl;
         player_list[i]->removeCard(pick_card);
-        now_p_->plusShakingCount();  // Èçµé Ä«¿îÆ® ¿Ã¸®±â
+        now_p_->plusShakingCount();  // í”ë“¤ ì¹´ìš´íŠ¸ ì˜¬ë¦¬ê¸°
 
-        if (deck.floor.sameCardCount(pick_card) == 1) {  // ÆøÅºÀ¸·Î ³»´Â °æ¿ì
-          std::cout << " ÆøÅºÀ¸·Î ³»´Â °æ¿ì,";
-          // ÇÑ¹ø¿¡ 3°³¸¦ ³ÂÀ¸¹Ç·Î FREE Ä«µå 2°³¸¦ ¸Ô°Ô µÈ´Ù.
+        if (deck.floor.sameCardCount(pick_card) == 1) {  // í­íƒ„ìœ¼ë¡œ ë‚´ëŠ” ê²½ìš°
+          std::cout << " í­íƒ„ìœ¼ë¡œ ë‚´ëŠ” ê²½ìš°,";
+          // í•œë²ˆì— 3ê°œë¥¼ ëƒˆìœ¼ë¯€ë¡œ FREE ì¹´ë“œ 2ê°œë¥¼ ë¨¹ê²Œ ëœë‹¤.
           now_p_->addCard(*free);
           now_p_->addCard(*free);
-          // ³½ Ä«µå¸¦ ¸ÔÀº ÆĞ·Î ÀÌµ¿ ½ÃÅ²´Ù.
+          // ë‚¸ ì¹´ë“œë¥¼ ë¨¹ì€ íŒ¨ë¡œ ì´ë™ ì‹œí‚¨ë‹¤.
           now_p_->my_card_list_.eatCard(&pick_card);
           rule.getCardsFromFloorWithBreak(&deck, now_p_, &pick_card);
-          rule.getCardsFromHand(player_list[i], &pick_card);
+          // ì† íŒ¨ì—ì„œ ê°™ì€ ì›” ì¹´ë“œ ì°¾ê¸° ìœ„í•œ ë¦¬ìŠ¤íŠ¸ ìƒì„±
+          rule.getCardsFromHand(player_list[i], &deck_card);
 
           if (deck.floor.sameCardCount(deck_card) == 0) {
-            std::cout << "µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 0°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+            std::cout << "ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 0ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             deck.floor.addCard(deck_card);
 
-            // ÆøÅºÀ¸·Î ÀÎÇÑ 1Àå¾¿ »¯¾î¿À±â
+            // í­íƒ„ìœ¼ë¡œ ì¸í•œ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! ÇÑ¹ø¿¡ 4ÀåÀ» ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! í•œë²ˆì— 4ì¥ì„ ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
 
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 1) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 1°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 1) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 1ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
 
-            // ÆøÅºÀ¸·Î ÀÎÇÑ 1Àå¾¿ »¯¾î¿À±â
+            // í­íƒ„ìœ¼ë¡œ ì¸í•œ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! ÇÑ¹ø¿¡ 4ÀåÀ» ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 2) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 2°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! í•œë²ˆì— 4ì¥ì„ ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 2) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 2ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
 
-            // ÆøÅºÀ¸·Î ÀÎÇÑ 1Àå¾¿ »¯¾î¿À±â
+            // í­íƒ„ìœ¼ë¡œ ì¸í•œ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! ÇÑ¹ø¿¡ 4ÀåÀ» ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 3) {
-            std::cout << " µ¦ Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 3°³ °°Àº °æ¿ì)" << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! í•œë²ˆì— 4ì¥ì„ ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 3) {
+            std::cout << " ë± ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 3ê°œ ê°™ì€ ê²½ìš°)" << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloor(&deck, now_p_, &deck_card);
 
-            // ÆøÅºÀ¸·Î ÀÎÇÑ 1Àå¾¿ »¯¾î¿À±â
+            // í­íƒ„ìœ¼ë¡œ ì¸í•œ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            // ¹Ù´Ú 3°³¿Í µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! ÇÑ¹ø¿¡ 8ÀåÀ» ¸Ô°í 2Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! í•œë²ˆì— 8ì¥ì„ ë¨¹ê³  2ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
           }
-        }
-        else {
-          std::cout << " ÆøÅºÀ¸·Î ³»Áö ¾Ê°í 1Àå¾¿ µû·Î ³»°í," << std::endl
-            << std::endl;
+        } else {
+          std::cout << " í­íƒ„ìœ¼ë¡œ ë‚´ì§€ ì•Šê³  1ì¥ì”© ë”°ë¡œ ë‚´ê³ ," << std::endl
+                    << std::endl;
           if (deck.floor.sameCardCount(deck_card) == 0) {
-            if (pick_card.isSame(deck_card)) {  // ÂÊ »óÈ²
-              std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¼Õ¿¡¼­ ³½ Ä«µå¿Í °°Àº °æ¿ì)"
-                << std::endl
-                << std::endl;
+            if (pick_card.isSame(deck_card)) {  // ìª½ ìƒí™©
+              std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì†ì—ì„œ ë‚¸ ì¹´ë“œì™€ ê°™ì€ ê²½ìš°)"
+                        << std::endl
+                        << std::endl;
               now_p_->my_card_list_.eatCard(&pick_card);
               now_p_->my_card_list_.eatCard(&deck_card);
-              // ÂÊÀ¸·Î ÀÎÇÑ 1Àå¾¿ »¯¾î¿À±â
+              // ìª½ìœ¼ë¡œ ì¸í•œ 1ì¥ì”© ëºì–´ì˜¤ê¸°
               rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-              std::cout << " ÂÊ ÀÔ´Ï´Ù!! 1Àå¾¿ »¯¾î¿É´Ï´Ù." << std::endl
-                << std::endl;
-            }
-            else {  // ¾î¶² Ä«µåµµ ÀÏÄ¡ÇÏÁö ¾Ê´Â °æ¿ì
+              std::cout << " ìª½ ì…ë‹ˆë‹¤!! 1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤." << std::endl
+                        << std::endl;
+            } else {  // ì–´ë–¤ ì¹´ë“œë„ ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ê²½ìš°
               deck.floor.addCard(pick_card);
               deck.floor.addCard(deck_card);
             }
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 1) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 1°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 1) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 1ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             deck.floor.addCard(pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 2) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 2°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 2) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 2ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             deck.floor.addCard(pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 3) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 3°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 3) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 3ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloor(&deck, now_p_, &deck_card);
-            // ¹Ù´Ú 3°³¿Í µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! 4ÀåÀ» ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! 4ì¥ì„ ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
           }
         }
-      }
-      else {
+      } else {
         player_list[i]->removeCard(pick_card);
         if (deck.floor.sameCardCount(pick_card) == 1) {
-          std::cout << " (¼Õ¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 1°³ °°°í,";
+          std::cout << " (ì†ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 1ê°œ ê°™ê³ ,";
           if (deck.floor.sameCardCount(deck_card) == 0) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 0°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 0ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &pick_card);
             deck.floor.addCard(deck_card);
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 1) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 1°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
-            if (pick_card.isSame(deck_card)) {  // »¶ »óÈ²
+          } else if (deck.floor.sameCardCount(deck_card) == 1) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 1ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
+            if (pick_card.isSame(deck_card)) {  // ë»‘ ìƒí™©
               deck.floor.addCard(pick_card);
               deck.floor.addCard(deck_card);
               now_p_->plusBbukCount();
-              std::cout << " »¶ÀÔ´Ï´Ù!!" << std::endl;
-            }
-            else {
+              std::cout << " ë»‘ì…ë‹ˆë‹¤!!" << std::endl;
+            } else {
               now_p_->my_card_list_.eatCard(&pick_card);
               rule.getCardsFromFloor(&deck, now_p_, &pick_card);
               now_p_->my_card_list_.eatCard(&deck_card);
               rule.getCardsFromFloor(&deck, now_p_, &deck_card);
             }
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 2) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 2°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 2) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 2ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 3) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 3°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 3) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 3ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloor(&deck, now_p_, &deck_card);
-            // ¹Ù´Ú 3°³¿Í µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! ÇÑ¹ø¿¡ 4ÀåÀ» ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! í•œë²ˆì— 4ì¥ì„ ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
           }
-        }
-        else if (deck.floor.sameCardCount(pick_card) == 2) {
-          std::cout << " (¼Õ¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 2°³ °°°í,";
+        } else if (deck.floor.sameCardCount(pick_card) == 2) {
+          std::cout << " (ì†ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 2ê°œ ê°™ê³ ,";
           if (deck.floor.sameCardCount(deck_card) == 0) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 0°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 0ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &pick_card);
             deck.floor.addCard(deck_card);
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 1) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 1°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 1) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 1ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 2) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 2°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
-            if (pick_card.isSame(deck_card)) {  // µû´ÚÀÎ °æ¿ì
+          } else if (deck.floor.sameCardCount(deck_card) == 2) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 2ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
+            if (pick_card.isSame(deck_card)) {  // ë”°ë‹¥ì¸ ê²½ìš°
               now_p_->my_card_list_.eatCard(&pick_card);
               now_p_->my_card_list_.eatCard(&deck_card);
               rule.getCardsFromFloor(&deck, now_p_, &deck_card);
-              // µû´ÚÀ¸·Î ÀÎÇÑ 1Àå¾¿ »¯¾î¿À±â
+              // ë”°ë‹¥ìœ¼ë¡œ ì¸í•œ 1ì¥ì”© ëºì–´ì˜¤ê¸°
               rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-              std::cout << " µû´ÚÀÔ´Ï´Ù!! ÇÑÀå¾¿ »¯¾î¿É´Ï´Ù." << std::endl
-                << std::endl;
-            }
-            else {
+              std::cout << " ë”°ë‹¥ì…ë‹ˆë‹¤!! í•œì¥ì”© ëºì–´ì˜µë‹ˆë‹¤." << std::endl
+                        << std::endl;
+            } else {
               now_p_->my_card_list_.eatCard(&pick_card);
               rule.getCardsFromFloorWithBreak(&deck, now_p_, &pick_card);
               now_p_->my_card_list_.eatCard(&deck_card);
               rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
             }
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 3) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 3°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 3) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 3ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloor(&deck, now_p_, &deck_card);
-            // ¹Ù´Ú 3°³¿Í µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! 4ÀåÀ» ÇÑ¹ø¿¡ ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! 4ì¥ì„ í•œë²ˆì— ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
           }
-        }
-        else if (deck.floor.sameCardCount(pick_card) == 3) {
-          std::cout << " (¼Õ¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 3°³ °°°í,";
+        } else if (deck.floor.sameCardCount(pick_card) == 3) {
+          std::cout << " (ì†ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 3ê°œ ê°™ê³ ,";
           if (deck.floor.sameCardCount(deck_card) == 0) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 0°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 0ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloor(&deck, now_p_, &pick_card);
             deck.floor.addCard(deck_card);
-            // ¹Ù´Ú 3°³¿Í ¼Õ¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ì†ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! 4ÀåÀ» ÇÑ¹ø¿¡ ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 1) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 1°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! 4ì¥ì„ í•œë²ˆì— ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 1) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 1ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloor(&deck, now_p_, &pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-            // ¹Ù´Ú 3°³¿Í ¼Õ¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ì†ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! 4ÀåÀ» ÇÑ¹ø¿¡ ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 2) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 2°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! 4ì¥ì„ í•œë²ˆì— ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 2) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 2ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloor(&deck, now_p_, &pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-            // ¹Ù´Ú 3°³¿Í ¼Õ¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ì†ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! 4ÀåÀ» ÇÑ¹ø¿¡ ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 3) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 3°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! 4ì¥ì„ í•œë²ˆì— ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 3) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 3ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             now_p_->my_card_list_.eatCard(&pick_card);
             rule.getCardsFromFloor(&deck, now_p_, &pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloor(&deck, now_p_, &deck_card);
-            // ¹Ù´Ú 3°³¿Í ¼Õ¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ì†ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            // ¹Ù´Ú 3°³¿Í µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! 8ÀåÀ» ÇÑ¹ø¿¡ ¸Ô°í 2Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! 8ì¥ì„ í•œë²ˆì— ë¨¹ê³  2ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
           }
-        }
-        else if (deck.floor.sameCardCount(pick_card) == 0) {
-          // ³½ Ä«µå°¡ ¹Ù´Ú ÆĞ¿Í ¾Æ¹«°Íµµ ÀÏÄ¡ÇÏÁö ¾Ê´Â °æ¿ì
-          std::cout << " (¼Õ¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 0°³ °°°í,";
+        } else if (deck.floor.sameCardCount(pick_card) == 0) {
+          // ë‚¸ ì¹´ë“œê°€ ë°”ë‹¥ íŒ¨ì™€ ì•„ë¬´ê²ƒë„ ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ê²½ìš°
+          std::cout << " (ì†ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 0ê°œ ê°™ê³ ,";
           if (deck.floor.sameCardCount(deck_card) == 0) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 0°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
-            if (pick_card.isSame(deck_card)) {  // ÂÊ »óÈ²
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 0ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
+            if (pick_card.isSame(deck_card)) {  // ìª½ ìƒí™©
               now_p_->my_card_list_.eatCard(&pick_card);
               now_p_->my_card_list_.eatCard(&deck_card);
-              // ÂÊÀ¸·Î ÀÎÇÑ 1Àå¾¿ »¯¾î¿À±â
+              // ìª½ìœ¼ë¡œ ì¸í•œ 1ì¥ì”© ëºì–´ì˜¤ê¸°
               if (now_p_->getHandList().size() != 0) {
                 rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-                std::cout << " ÂÊ ÀÔ´Ï´Ù!! 1Àå¾¿ »¯¾î¿É´Ï´Ù." << std::endl;
+                std::cout << " ìª½ ì…ë‹ˆë‹¤!! 1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤." << std::endl;
               }
-            }
-            else {  // ¾î¶² Ä«µåµµ ÀÏÄ¡ÇÏÁö ¾Ê´Â °æ¿ì
+            } else {  // ì–´ë–¤ ì¹´ë“œë„ ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ê²½ìš°
               deck.floor.addCard(pick_card);
               deck.floor.addCard(deck_card);
             }
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 1) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 1°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 1) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 1ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             deck.floor.addCard(pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 2) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 2°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 2) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 2ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             deck.floor.addCard(pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloorWithBreak(&deck, now_p_, &deck_card);
-          }
-          else if (deck.floor.sameCardCount(deck_card) == 3) {
-            std::cout << " µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ¹Ù´Ú Ä«µå¿Í 3°³ °°Àº °æ¿ì)"
-              << std::endl
-              << std::endl;
+          } else if (deck.floor.sameCardCount(deck_card) == 3) {
+            std::cout << " ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ë°”ë‹¥ ì¹´ë“œì™€ 3ê°œ ê°™ì€ ê²½ìš°)"
+                      << std::endl
+                      << std::endl;
             deck.floor.addCard(pick_card);
             now_p_->my_card_list_.eatCard(&deck_card);
             rule.getCardsFromFloor(&deck, now_p_, &deck_card);
-            // ¹Ù´Ú 3°³¿Í µ¦¿¡¼­ »ÌÀº Ä«µå°¡ ÀÏÄ¡ÇØ 1Àå¾¿ »¯¾î¿À±â
+            // ë°”ë‹¥ 3ê°œì™€ ë±ì—ì„œ ë½‘ì€ ì¹´ë“œê°€ ì¼ì¹˜í•´ 1ì¥ì”© ëºì–´ì˜¤ê¸°
             rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-            std::cout << " °¨»çÇÕ´Ï´Ù!! 4ÀåÀ» ÇÑ¹ø¿¡ ¸Ô°í 1Àå¾¿ »¯¾î¿É´Ï´Ù."
-              << std::endl
-              << std::endl;
+            std::cout << " ê°ì‚¬í•©ë‹ˆë‹¤!! 4ì¥ì„ í•œë²ˆì— ë¨¹ê³  1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
           }
         }
       }
 
-      // ¾µÀÎÁö È®ÀÎÇÏ´Â °æ¿ì
+      // ì“¸ì¸ì§€ í™•ì¸í•˜ëŠ” ê²½ìš°
       if (deck.floor.isEmptyFloorList() && now_p_->getHandList().size() != 0) {
         rule.getCardsFromOthers(now_p_, other1_p_, other2_p_);
-        std::cout << " ¾µÀÔ´Ï´Ù!! 1Àå¾¿ »¯¾î¿É´Ï´Ù." << std::endl;
+        std::cout << " ì“¸ì…ë‹ˆë‹¤!! 1ì¥ì”© ëºì–´ì˜µë‹ˆë‹¤." << std::endl;
       }
 
       (*now_p_).calTotalScore();
@@ -508,57 +476,54 @@ int main() {
       int keep_going = 0;
 
       if (now_p_->getHandList().size() == 0) {
-        // go stop ¼±ÅÃ±Ç¾øÀÌ ±×³É ½Â¸®ÇÏ´Â °æ¿ì
+        // go stop ì„ íƒê¶Œì—†ì´ ê·¸ëƒ¥ ìŠ¹ë¦¬í•˜ëŠ” ê²½ìš°
         if ((now_p_->getGoCount() == 0 && now_p_->getTotalScore() >= 3) ||
-          (now_p_->getGoCount() > 0 &&
-            now_p_->getTotalScore() > now_p_->getTempScore())) {
+            (now_p_->getGoCount() > 0 &&
+             now_p_->getTotalScore() > now_p_->getTempScore())) {
           std::cout << std::endl;
           board.printPlayer(*other2_p_);
           board.printPlayer(*other1_p_);
           board.printFloor(deck.floor);
           board.printPlayer(*now_p_);
           now_p_->winner_ = true;
-          std::cout << " [" << now_p_->getName() << "]°¡ ½Â¸®ÇÏ¿´½À´Ï´Ù."
-            << std::endl
-            << std::endl;
+          std::cout << " [" << now_p_->getName() << "]ê°€ ìŠ¹ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤."
+                    << std::endl
+                    << std::endl;
           result.result(now_p_, other1_p_, other2_p_);
           break;
         }
-      }
-      else {
-        // GO STOP ¼±ÅÃ±ÇÀÌ »ı±â´Â °æ¿ì
+      } else {
+        // GO STOP ì„ íƒê¶Œì´ ìƒê¸°ëŠ” ê²½ìš°
         if ((now_p_->getGoCount() == 0 && now_p_->getTotalScore() >= 3) ||
-          (now_p_->getGoCount() > 0 &&
-            now_p_->getTotalScore() > now_p_->getTempScore())) {
+            (now_p_->getGoCount() > 0 &&
+             now_p_->getTotalScore() > now_p_->getTempScore())) {
           std::cout << std::endl;
           board.printPlayer(*other2_p_);
           board.printPlayer(*other1_p_);
           board.printFloor(deck.floor);
           board.printPlayer(*now_p_);
-          // Go¸¦ ÇÒÁö STOPÀ» ÇÒÁö ¼±ÅÃ
-          std::cout << " [1]GO ¸¦ ÇÏ½Ã°Ú½À´Ï±î? " << std::endl;
-          std::cout << " [2]STOP ¸¦ ÇÏ½Ã°Ú½À´Ï±î? " << std::endl;
+          // Goë¥¼ í• ì§€ STOPì„ í• ì§€ ì„ íƒ
+          std::cout << " [1]GO ë¥¼ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? " << std::endl;
+          std::cout << " [2]STOP ë¥¼ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? " << std::endl;
           std::cin >> keep_going;
-          // ÀÔ·ÂÇÑ ¼ıÀÚ°¡ À¯È¿ÇÑÁö È®ÀÎ
+          // ì…ë ¥í•œ ìˆ«ìê°€ ìœ íš¨í•œì§€ í™•ì¸
           while (1) {
             if (keep_going > 0 && keep_going < 3) {
               break;
-            }
-            else {
-              std::cout << " À¯È¿ÇÑ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏÁö ¾Ê¾Ò½À´Ï´Ù. ¹øÈ£¸¦ ´Ù½Ã "
-                "ÀÔ·ÂÇØÁÖ¼¼¿ä.>> ";
+            } else {
+              std::cout << " ìœ íš¨í•œ ìˆ«ìë¥¼ ì…ë ¥í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ "
+                           "ì…ë ¥í•´ì£¼ì„¸ìš”.>> ";
               std::cin >> keep_going;
             }
           }
           if (keep_going == 1) {
             now_p_->plusGoCount();
             now_p_->setTempScore(now_p_->getTotalScore());
-          }
-          else {
+          } else {
             now_p_->winner_ = true;
-            std::cout << " [" << now_p_->getName() << "]°¡ ½Â¸®ÇÏ¿´½À´Ï´Ù."
-              << std::endl
-              << std::endl;
+            std::cout << " [" << now_p_->getName() << "]ê°€ ìŠ¹ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤."
+                      << std::endl
+                      << std::endl;
             result.result(now_p_, other1_p_, other2_p_);
             break;
           }
@@ -566,15 +531,15 @@ int main() {
       }
 
       if (now_p_->getHandList().size() == 0 &&
-        other1_p_->getHandList().size() == 0 &&
-        other2_p_->getHandList().size() == 0) {
+          other1_p_->getHandList().size() == 0 &&
+          other2_p_->getHandList().size() == 0) {
         board.printPlayer(*other2_p_);
         board.printPlayer(*other1_p_);
         board.printFloor(deck.floor);
         board.printPlayer(*now_p_);
-        std::cout << " ½ÂÀÚ°¡ °áÁ¤µÇÁö ¾Ê¾Ò½À´Ï´Ù." << std::endl;
-        std::cout << " Àç°æ±â°¡ ÇÊ¿äÇÕ´Ï´Ù." << std::endl;
-        std::cout << " ÇÁ·Î±×·¥À» ´Ù½Ã ½ÇÇàÇØÁÖ¼¼¿ä." << std::endl;
+        std::cout << " ìŠ¹ìê°€ ê²°ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤." << std::endl;
+        std::cout << " ì¬ê²½ê¸°ê°€ í•„ìš”í•©ë‹ˆë‹¤." << std::endl;
+        std::cout << " í”„ë¡œê·¸ë¨ì„ ë‹¤ì‹œ ì‹¤í–‰í•´ì£¼ì„¸ìš”." << std::endl;
         end = true;
         break;
       }
