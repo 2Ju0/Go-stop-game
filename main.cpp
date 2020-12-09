@@ -504,7 +504,7 @@ int main() {
           board.printPlayer(*now_p_);
           // Go를 할지 STOP을 할지 선택
           std::cout << " [1]GO 를 하시겠습니까? " << std::endl;
-          std::cout << " [2]STOP 를 하시겠습니까? " << std::endl;
+          std::cout << " [2]STOP 를 하시겠습니까? ";
           std::cin >> keep_going;
           // 입력한 숫자가 유효한지 확인
           while (1) {
