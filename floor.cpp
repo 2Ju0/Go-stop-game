@@ -1,43 +1,51 @@
 #include "floor.h"
 
-void Floor::reset() { floor_list_.clear(); }
+void Floor::addCard(Hwatoo card) {
+  floor_list_.push_back(card);
+}  // 바닥패 리스트에 카드 추가
 
-void Floor::add_card(Hwatoo card) { floor_list_.push_back(card); }
-
-void Floor::remove_card(Hwatoo card) {
-  for (itor = floor_list_.begin(); itor != floor_list_.end(); ++itor) {
-    if ((*itor).is_same(card)) {
-      floor_list_.erase(itor++);
-      return;
+Hwatoo* Floor::removeCard(Hwatoo card) { // 바닥 패에서 특정 카드 삭제
+  for (itor = floor_list_.begin(); itor != floor_list_.end();) {
+    if ((*itor).isSame(card)) {
+      Hwatoo* card = &(*itor);
+      floor_list_.erase(itor);
+      return card;
     } else {
-      itor++;
+      ++itor;
     }
   }
+  return nullptr;
 }
 
-bool Floor::is_empty_floor_list() { return this->floor_list_.empty(); }
+bool Floor::isEmptyFloorList() {
+  return this->floor_list_.empty();
+}  // 바닥패가 리스트가 비어있는지 확인
 
-void Floor::print_card_list() {
+void Floor::printCardList() {  // 바닥패 리스트 출력
   for (itor = floor_list_.begin(); itor != floor_list_.end(); ++itor) {
-    std::cout << (*itor).getName() << " ";
+      std::cout << (*itor).getMonth() << (*itor).getKind() << " ";
   }
-  std::cout << std::endl;
 }
 
-// 매개변수로 받은 card와 floor_list에 같은 종류의 카드가 있다면 cnt를 증가하여 반환한다.
-int Floor::same_card_count(Hwatoo card) { 
+// 매개변수로 받은 card와 floor_list에 같은 종류의 카드가 있다면 cnt를 증가하여
+// 반환한다.
+int Floor::sameCardCount(Hwatoo card) {
   int cnt = 0;
   for (itor = floor_list_.begin(); itor != floor_list_.end(); ++itor) {
-    if ((*itor).is_same(card)) cnt++;
+    if ((*itor).isSame(card)) cnt++;
   }
   return cnt;
 }
 
-// 매개변수로 받은 card와 floor_list에 같은 종류의 카드가 있다면 변수 list에 저장하여 반환한다.
-std::list<Hwatoo> Floor::same_card_list(Hwatoo card) {
-  std::list<Hwatoo> list;
+// 매개변수로 받은 card와 floor_list에 같은 종류의 카드가 있다면 변수 list에
+// 저장하여 반환한다.
+std::vector<Hwatoo> Floor::sameCardList(Hwatoo card) {
+  std::vector<Hwatoo> list;
   for (itor = floor_list_.begin(); itor != floor_list_.end(); ++itor) {
-    if ((*itor).is_same(card)) list.push_back(*itor);
+    if ((*itor).isSame(card)) {
+      list.push_back(*itor);
+    }
   }
   return list;
 }
+
