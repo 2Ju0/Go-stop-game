@@ -1,4 +1,5 @@
 #include "hwatoo.h"
+#include <iostream>
 
 Hwatoo::Hwatoo(std::string name) : name_(name) {
   std::vector<char> charArray(name_.begin(), name_.end());
@@ -15,8 +16,6 @@ Hwatoo::Hwatoo(std::string name) : name_(name) {
     this->kind_ = "띠";
   } else if (strcmp(temp, "쌍") == 0) {
     this->kind_ = "쌍";
-  } else {
-    this->kind_ = "jocker";
   }
 }
 
@@ -37,11 +36,8 @@ int Hwatoo::getMonth() const {
 
 std::string Hwatoo::getKind() const { return this->kind_; }
 
-bool Hwatoo::is_same(Hwatoo card) {
-  return (this->getName() == card.getName());
+bool Hwatoo::isSame(Hwatoo card) {
+  return (this->getMonth() == card.getMonth());
 }
 
-void Hwatoo::setName(std::string name) { this->name_ = name; }
-
 std::string Hwatoo::getName() { return name_; }
-
