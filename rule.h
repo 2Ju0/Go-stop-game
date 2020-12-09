@@ -2,29 +2,20 @@
 #define RULE_H
 
 #include <iostream>
-#include "floor.h"
-#include "player.h"
+#include <vector>
+
+#include "deck.h"
 
 class Rule {
- public:
-  void bbuk(Hwatoo throw_card, Hwatoo deck_card, Floor floor,
-            Player curr_player, Player player2, Player player3);
+public:
+  void checkChongtong(Player* player);
+  void getCardsFromFloorWithBreak(Deck* deck, Player* now_p_, Hwatoo* card);
+  void getCardsFromFloor(Deck* deck, Player* now_p_, Hwatoo* card);
+  void getCardsFromHand(Player* now_p_, Hwatoo* pick_card);
+  void getCardsFromOthers(Player* now_p_, Player* other1_p_, Player* other2_p_);
 
-  void ddadak(Hwatoo throw_card, Hwatoo deck_card, Floor floor,
-              Player curr_player, Player player2, Player player3);
-
-  void jjok(Hwatoo throw_card, Hwatoo deck_card, Floor floor,
-            Player curr_player, Player player2, Player player3);
-
-  void sseul(Hwatoo throw_card, Hwatoo deck_card, Floor floor,
-             Player curr_player, Player player2, Player player3);
-
-  void check_chongtong(Player player);
-
- private:
-  std::list<Hwatoo>::iterator itor;
-  void get_cards_from_others(Player curr_player, Player player2,
-                             Player player3);
+private:
+  std::vector<Hwatoo>::iterator itor;
 };
 
 #endif  // RULE_H
