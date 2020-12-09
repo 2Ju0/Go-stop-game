@@ -110,9 +110,3 @@ void Board::printFloor(Floor floor) {
                "────────"
             << std::endl;
 }
-
-void Board::line() {
-  std::cout << "---------------------------------------------------------------"
-               "---------"
-            << std::endl;
-}
