@@ -116,3 +116,4 @@ void Board::line() {
                "---------"
             << std::endl;
 }
+
