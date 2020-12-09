@@ -5,18 +5,17 @@
 #include <vector>
 
 class Hwatoo {
- public:
+public:
   explicit Hwatoo(std::string name);
   Hwatoo() = default;
   int getMonth() const;
   std::string getKind() const;
-  bool is_same(Hwatoo card);
-  void setName(std::string name);
+  bool isSame(Hwatoo card);
   std::string getName();
 
- private:
+private:
   std::string name_;
   std::string kind_;
 };
 
-#endif // HWATOO_H 
+#endif  // HWATOO_H
