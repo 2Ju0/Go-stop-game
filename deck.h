@@ -1,35 +1,34 @@
 #ifndef DECK_H
 #define DECK_H
 
+#include <ctime>
 #include <iostream>
 #include <queue>
 #include <vector>
-#include <ctime>
+#include <utility>
 
 #include "floor.h"
 #include "player.h"
 
 class Deck {
- public:
+public:
   std::vector<Hwatoo>
-      card_list_;  // mainë¬¸ ì¶œë ¥ ìœ„í•´ ì ì‹œ publicìœ¼ë¡œ (ì›ë˜ëŠ” private)
-  std::queue<Hwatoo> deck_list_;       // deckì´ ê°€ì§€ëŠ” íŒ¨ ë¦¬ìŠ¤íŠ¸(ë§ˆì°¬ê°€ì§€ë¡œ ì›ë˜ private)
-  Floor floor = Floor();     // floor ê°ì²´
-  Player player1 = Player("player1");  // player1 ê°ì²´
-  Player player2 = Player("player2");  // player2 ê°ì²´
-  Player player3 = Player("player3");  // player3 ê°ì²´
+    card_list_;  // main¹® Ãâ·Â À§ÇØ Àá½Ã publicÀ¸·Î (¿ø·¡´Â private)
+  std::queue<Hwatoo>
+    deck_list_;  // deckÀÌ °¡Áö´Â ÆĞ ¸®½ºÆ®(¸¶Âù°¡Áö·Î ¿ø·¡ private)
+  Floor floor = Floor();               // floor °´Ã¼
+  Player player1 = Player("player1");  // player1 °´Ã¼
+  Player player2 = Player("player2");  // player2 °´Ã¼
+  Player player3 = Player("player3");  // player3 °´Ã¼
 
-  Deck(Hwatoo* card); // constructor
-  void reset(Hwatoo* card);
-  Hwatoo pop_card();
-  void game_start();
+  Deck(Hwatoo* card);  // constructor
+  void gameStart();
 
- private:
-  const int number_of_card_ = 51;  // ì¹´ë“œ ê°œìˆ˜ 51ê°œë¡œ ê³ ì •
-  void clear_deck();
-  void card_shuffle();
-  void input_deck();
-  void divide_card();
+private:
+  const int number_of_card_ = 48;  // Ä«µå °³¼ö 48°³·Î °íÁ¤
+  void cardShuffle();
+  void inputDeck();
+  void distributeCard();
 };
 
-
+#endif  // DECK_H
