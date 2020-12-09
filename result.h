@@ -4,12 +4,15 @@
 #include <iostream>
 
 #include "player.h"
+#include "deck.h"
 
-// pay_point ëŠ” ì‹¤ì œ ê²Œì„ì—ì„œëŠ” ëˆì„ ì–¼ë§ˆ ë‚´ì•¼í•˜ëŠ”ì§€ì¸ë°
-// í”„ë¡œê·¸ë¨ì—ì„œëŠ” í¬ì¸íŠ¸ë¡œ ëˆì„ ëŒ€ì²´
+// pay_point ´Â ½ÇÁ¦ °ÔÀÓ¿¡¼­´Â µ·À» ¾ó¸¶ ³»¾ßÇÏ´ÂÁöÀÎµ¥
+// ÇÁ·Î±×·¥¿¡¼­´Â Æ÷ÀÎÆ®·Î µ·À» ´ëÃ¼
 
 class Result {
-  void result(Player Winner, Player loser1, Player loser2);
+public:
+  int number_of_game_ = 0;
+  void result(Player* Winner, Player* loser1, Player* loser2);
 };
 
 #endif  // RESULT_H
