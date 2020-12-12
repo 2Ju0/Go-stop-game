@@ -7,7 +7,7 @@
 #include "deck.h"
 
 class Board {
-public:
+ public:
   void gameStart(Deck* deck);
   void gameOver();
   void printPlayer(Player player);
