@@ -5,8 +5,8 @@ void Rule::checkChongtong(Player* player) {
   int check_count_[13] = {
       0,
   };
-  // ¼Õ ÆĞ¿¡ ÀÖ´Â Ä«µåÀÇ ¿ù... ex) 1¿ùÀÌ¸é index 1¿¡ Á¢±Ù
-  // check_count_ÀÇ index¿¡ ÇØ´çÇÏ´Â ¿ø¼Ò¿¡ +1
+  // ì† íŒ¨ì— ìˆëŠ” ì¹´ë“œì˜ ì›”... ex) 1ì›”ì´ë©´ index 1ì— ì ‘ê·¼
+  // check_count_ì˜ indexì— í•´ë‹¹í•˜ëŠ” ì›ì†Œì— +1
   if (!(*player).getHandList().empty()) {
     for (int i = 0; i < (*player).getHandList().size(); i++) {
       check_month_ = (*player).getHandList()[i].getMonth();
@@ -22,39 +22,29 @@ void Rule::checkChongtong(Player* player) {
 }
 
 void Rule::getCardsFromFloorWithBreak(Deck* deck, Player* now_p_,
-  Hwatoo* card) {
+                                      Hwatoo* card) {
   std::vector<Hwatoo> list = (deck->floor).sameCardList(*card);
-  // ¹Ù´Ú¿¡ °°Àº ¿ù Ä«µå Ã£±â À§ÇÑ ¸®½ºÆ® »ı¼º
+  // ë°”ë‹¥ì— ê°™ì€ ì›” ì¹´ë“œ ì°¾ê¸° ìœ„í•œ ë¦¬ìŠ¤íŠ¸ ìƒì„±
   for (itor = list.begin(); itor != list.end(); ++itor) {
     now_p_->my_card_list_.eatCard(&(*itor));
     deck->floor.removeCard(*itor);
     break;
-    // °°Àº ¿ù Ä«µå ¸ÔÀºÆĞ·Î ÀÌµ¿, ¹Ù´Ú ÆĞ¿¡¼­ Áö¿ì±â
+    // ê°™ì€ ì›” ì¹´ë“œ ë¨¹ì€íŒ¨ë¡œ ì´ë™, ë°”ë‹¥ íŒ¨ì—ì„œ ì§€ìš°ê¸°
   }
 }
 
 void Rule::getCardsFromFloor(Deck* deck, Player* now_p_, Hwatoo* card) {
   std::vector<Hwatoo> list = (deck->floor).sameCardList(*card);
-  // ¹Ù´Ú¿¡ °°Àº ¿ù Ä«µå Ã£±â À§ÇÑ ¸®½ºÆ® »ı¼º
+  // ë°”ë‹¥ì— ê°™ì€ ì›” ì¹´ë“œ ì°¾ê¸° ìœ„í•œ ë¦¬ìŠ¤íŠ¸ ìƒì„±
   for (itor = list.begin(); itor != list.end(); ++itor) {
     now_p_->my_card_list_.eatCard(&(*itor));
     deck->floor.removeCard(*itor);
-    // °°Àº ¿ù Ä«µå ¸ÔÀºÆĞ·Î ÀÌµ¿, ¹Ù´Ú ÆĞ¿¡¼­ Áö¿ì±â
-  }
-}
-
-void Rule::getCardsFromHand(Player* now_p_, Hwatoo* pick_card) {
-  std::vector<Hwatoo> list = now_p_->sameCardList(*pick_card);
-  // ¼Õ ÆĞ¿¡¼­ °°Àº ¿ù Ä«µå Ã£±â À§ÇÑ ¸®½ºÆ® »ı¼º
-  for (itor = list.begin(); itor != list.end(); ++itor) {
-    now_p_->my_card_list_.eatCard(&(*itor));
-    now_p_->removeCard(*itor);
-    // °°Àº ¿ù Ä«µå ¸ÔÀºÆĞ·Î ÀÌµ¿, ¼Õ ÆĞ¿¡¼­ Áö¿ì±â
+    // ê°™ì€ ì›” ì¹´ë“œ ë¨¹ì€íŒ¨ë¡œ ì´ë™, ë°”ë‹¥ íŒ¨ì—ì„œ ì§€ìš°ê¸°
   }
 }
 
 void Rule::getCardsFromOthers(Player* now_p_, Player* other1_p_,
-  Player* other2_p_) {
+                              Player* other2_p_) {
   Hwatoo* card = other1_p_->my_card_list_.stealCard();
   now_p_->my_card_list_.eatCard(card);
   other1_p_->my_card_list_.removePCard();
