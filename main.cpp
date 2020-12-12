@@ -475,6 +475,17 @@ int main() {
       (*other2_p_).calTotalScore();
       int keep_going = 0;
 
+      if (now_p_->getShakingCount() == 3) {
+        now_p_->winner_ = true;
+        std::cout << " [" << now_p_->getName() << "]가 뻑 3번으로 승리했습니다."
+                  << std::endl;
+        std::cout << " [" << other1_p_->getName() << "]가 3 point를 잃습니다."
+                  << std::endl;
+        std::cout << " [" << other2_p_->getName() << "]가 3 point를 잃습니다."
+                  << std::endl;
+        break;
+      }
+
       if (now_p_->getHandList().size() == 0) {
         // go stop 선택권없이 그냥 승리하는 경우
         if ((now_p_->getGoCount() == 0 && now_p_->getTotalScore() >= 3) ||
