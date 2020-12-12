@@ -2,8 +2,8 @@
 
 Player::Player(std::string name) : player_name_(name) {}  // Constructor
 
-// ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ì€ cardì™€ floor_listì— ê°™ì€ ì¢…ë¥˜ì˜ ì¹´ë“œê°€ ìˆë‹¤ë©´ ë³€ìˆ˜ listì—
-// ì €ì¥í•˜ì—¬ ë°˜í™˜í•œë‹¤.
+// ¸Å°³º¯¼ö·Î ¹ŞÀº card¿Í floor_list¿¡ °°Àº Á¾·ùÀÇ Ä«µå°¡ ÀÖ´Ù¸é º¯¼ö list¿¡
+// ÀúÀåÇÏ¿© ¹İÈ¯ÇÑ´Ù.
 std::vector<Hwatoo> Player::sameCardList(Hwatoo card) {
   std::vector<Hwatoo> list;
   for (itor = hand_list_.begin(); itor != hand_list_.end(); ++itor) {
@@ -16,23 +16,24 @@ std::vector<Hwatoo> Player::sameCardList(Hwatoo card) {
 
 void Player::setName(std::string name) {
   this->player_name_ = name;
-}  // player ì´ë¦„ ì„¤ì •
+}  // player ÀÌ¸§ ¼³Á¤
 
 std::string Player::getName() {
   return this->player_name_;
-}  // player ì´ë¦„ ë°˜í™˜
+}  // player ÀÌ¸§ ¹İÈ¯
 
-void Player::addCard(Hwatoo card) {  // playerì˜ ì†íŒ¨ ë¦¬ìŠ¤íŠ¸ì— ì¹´ë“œ ì¶”ê°€
+void Player::addCard(Hwatoo card) {  // playerÀÇ ¼ÕÆĞ ¸®½ºÆ®¿¡ Ä«µå Ãß°¡
   hand_list_.push_back(card);
 }
 
 void Player::removeCard(
-    Hwatoo card) {  // playerì˜ ì†íŒ¨ ë¦¬ìŠ¤íŠ¸ì—ì„œ íŠ¹ì • ì¹´ë“œ ì‚­ì œ
+  Hwatoo card) {  // playerÀÇ ¼ÕÆĞ ¸®½ºÆ®¿¡¼­ Æ¯Á¤ Ä«µå »èÁ¦
   for (itor = hand_list_.begin(); itor != hand_list_.end();) {
     if ((*itor).getName() == card.getName()) {
       hand_list_.erase(itor);
       return;
-    } else {
+    }
+    else {
       ++itor;
     }
   }
@@ -41,7 +42,7 @@ void Player::removeCard(
 int Player::sameCardCountInHandList(Hwatoo card) {
   int cnt = 0;
   for (itor = this->hand_list_.begin(); itor != this->hand_list_.end();
-       ++itor) {
+    ++itor) {
     if ((*itor).isSame(card)) {
       cnt++;
     }
@@ -49,11 +50,11 @@ int Player::sameCardCountInHandList(Hwatoo card) {
   return cnt;
 }
 
-int Player::getGoCount() { return this->go_count_; }  // ëª‡ goì¸ì§€ í™•ì¸
+int Player::getGoCount() { return this->go_count_; }  // ¸î goÀÎÁö È®ÀÎ
 
-void Player::plusGoCount() { this->go_count_++; }  // go ê°’ ì¦ê°€
+void Player::plusGoCount() { this->go_count_++; }  // go °ª Áõ°¡
 
-void Player::printHandList() {  // playerì˜ ì¹´ë“œ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
+void Player::printHandList() {  // playerÀÇ Ä«µå ¸®½ºÆ® Ãâ·Â
   int number = 0;
   for (itor = hand_list_.begin(); itor != hand_list_.end(); ++itor) {
     std::cout << "[" << number++ << "]" << (*itor).getMonth() << (*itor).getKind() << " ";
@@ -63,57 +64,56 @@ void Player::printHandList() {  // playerì˜ ì¹´ë“œ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 
 std::vector<Hwatoo> Player::getHandList() {
   return this->hand_list_;
-}  // playerì˜ ì†íŒ¨ ë¦¬ìŠ¤íŠ¸ ë°˜í™˜
+}  // playerÀÇ ¼ÕÆĞ ¸®½ºÆ® ¹İÈ¯
 
 void Player::setTempScore(int score) { this->temp_score_ = score; }
 
 int Player::getTempScore() { return this->temp_score_; }
 
-int Player::getTotalScore() { return this->score_; }  // player ì ìˆ˜ ë°˜í™˜
+int Player::getTotalScore() { return this->score_; }  // player Á¡¼ö ¹İÈ¯
 
-int Player::getBbukCount() { return this->bbuk_count_; }  // ë»‘ íšŸìˆ˜ ë°˜í™˜
+int Player::getBbukCount() { return this->bbuk_count_; }  // »¶ È½¼ö ¹İÈ¯
 
-void Player::plusBbukCount() { this->bbuk_count_++; }  // ë»‘ íšŸìˆ˜ ì¦ê°€
+void Player::plusBbukCount() { this->bbuk_count_++; }  // »¶ È½¼ö Áõ°¡
 
 int Player::getShakingCount() {
   return this->shaking_count_;
-}  // í”ë“¤ê¸° íšŸìˆ˜ ë°˜í™˜
-
-void Player::resetShakingCount() {
-  this->shaking_count_ = 0;
-}  // í”ë“¤ê¸° íšŸìˆ˜ ì´ˆê¸°í™”
+}  // Èçµé±â È½¼ö ¹İÈ¯
 
 void Player::plusShakingCount() {
   this->shaking_count_++;
-}  // í”ë“¤ê¸° íšŸìˆ˜ ì¦ê°€
+}  // Èçµé±â È½¼ö Áõ°¡
 
-void Player::calG() {  // ê´‘ ê³„ì‚°
+void Player::calG() {  // ±¤ °è»ê
   this->G_point_ = 0;
   this->except_point_ = 0;
   std::vector<Hwatoo> list = this->my_card_list_.getGList();
 
-  // ê´‘ ê°œìˆ˜ ì¦ê°€ì‹œí‚¤ëŠ” ë¶€ë¶„
+  // ±¤ °³¼ö Áõ°¡½ÃÅ°´Â ºÎºĞ
   for (itor = list.begin(); itor != list.end(); ++itor) {
     int month = (*itor).getMonth();
-    if (month == 12) {  // ë¹„ê´‘ ê°œìˆ˜ ì¦ê°€
+    if (month == 12) {  // ºñ±¤ °³¼ö Áõ°¡
       this->except_point_++;
-    } 
+    }
   }
   this->G_point_ = list.size();
-  if (this->G_point_ == 5) {  // 5ê´‘
+  if (this->G_point_ == 5) {  // 5±¤
     this->score_ += 15;
-  } else if (this->G_point_ == 4) {  // 4ê´‘
+  }
+  else if (this->G_point_ == 4) {  // 4±¤
     this->score_ += 4;
-  } else if (this->G_point_ == 3) {  // 3ê´‘
-    if (this->except_point_ == 1) {  // ë¹„ê´‘í¬í•¨
+  }
+  else if (this->G_point_ == 3) {  // 3±¤
+    if (this->except_point_ == 1) {  // ºñ±¤Æ÷ÇÔ
       this->score_ += 2;
-    } else {
+    }
+    else {
       this->score_ += 3;
     }
   }
 }
 
-void Player::calD() {  // ë  ê³„ì‚°
+void Player::calD() {  // ¶ì °è»ê
   this->make_cheongdan_ = 0;
   this->make_chodan_ = 0;
   this->make_hongdan_ = 0;
@@ -121,23 +121,23 @@ void Player::calD() {  // ë  ê³„ì‚°
   std::vector<Hwatoo> list = this->my_card_list_.getDList();
 
   for (itor = list.begin(); itor != list.end(); ++itor) {
-    // ì²­ë‹¨ í™•ì¸
+    // Ã»´Ü È®ÀÎ
     int month = (*itor).getMonth();
     if (month == 6 || month == 9 || month == 10) {
       this->make_cheongdan_++;
     }
-    // í™ë‹¨ í™•ì¸
+    // È«´Ü È®ÀÎ
     if (month == 1 || month == 2 || month == 3) {
       this->make_hongdan_++;
     }
-    // ì´ˆë‹¨ í™•ì¸
+    // ÃÊ´Ü È®ÀÎ
     if (month == 4 || month == 5 || month == 7) {
       this->make_chodan_++;
     }
   }
 
   D_point_ = list.size();
-  if (this->D_point_ >= 5) {  // ë ê°€ 5ì¥ ì´ìƒì¸ ê²½ìš°
+  if (this->D_point_ >= 5) {  // ¶ì°¡ 5Àå ÀÌ»óÀÎ °æ¿ì
     this->score_ += (this->D_point_ - 4);
   }
   if (this->make_cheongdan_ == 3) {
@@ -151,7 +151,7 @@ void Player::calD() {  // ë  ê³„ì‚°
   }
 }
 
-void Player::calM() {  // ë© ê³„ì‚°
+void Player::calM() {  // ¸Û °è»ê
   this->M_point_ = 0;
   this->make_godori_ = 0;
   std::vector<Hwatoo> list = this->my_card_list_.getMList();
@@ -162,34 +162,35 @@ void Player::calM() {  // ë© ê³„ì‚°
       this->make_godori_++;
     }
   }
-  if (this->make_godori_ == 3) {  // ê³ ë„ë¦¬ ê³„ì‚°
+  if (this->make_godori_ == 3) {  // °íµµ¸® °è»ê
     this->score_ += 5;
   }
   M_point_ = list.size();
-  if (this->M_point_ >= 5) {  // ë©ì´ 5ê°œ ì´ìƒì¸ ê²½ìš°
+  if (this->M_point_ >= 5) {  // ¸ÛÀÌ 5°³ ÀÌ»óÀÎ °æ¿ì
     this->score_ += (this->M_point_ - 4);
   }
 }
 
-void Player::calP() {  // í”¼ ê³„ì‚°
+void Player::calP() {  // ÇÇ °è»ê
   this->P_point_ = 0;
   std::vector<Hwatoo> list = this->my_card_list_.getPList();
 
   for (itor = list.begin(); itor != list.end(); ++itor) {
     std::string kind = (*itor).getKind();
-    if (kind == "ìŒ") {
+    if (kind == "½Ö") {
       this->P_point_ += 2;
-    } else {
+    }
+    else {
       this->P_point_ += 1;
     }
   }
 
-  if (this->P_point_ >= 10) {  // í”¼ê°€ 10ê°œ ì´ìƒì¸ ê²½ìš°
+  if (this->P_point_ >= 10) {  // ÇÇ°¡ 10°³ ÀÌ»óÀÎ °æ¿ì
     this->score_ += (this->P_point_ - 9);
   }
 }
 
-void Player::calTotalScore() {  // ìµœì¢… ì ìˆ˜ ê³„ì‚°
+void Player::calTotalScore() {  // ÃÖÁ¾ Á¡¼ö °è»ê
   this->score_ = 0;
   this->calG();
   this->calM();
