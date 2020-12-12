@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef GOSTOP_PLAYER_H
+#define GOSTOP_PLAYER_H
 
 #include <iostream>
 #include <vector>
@@ -8,7 +8,7 @@
 #include "cardListManager.h"
 
 class Player {
-public:
+ public:
   explicit Player(std::string name);
   CardListManager my_card_list_ = CardListManager();
   void setName(std::string name);
@@ -28,16 +28,17 @@ public:
   int getBbukCount();
   void plusBbukCount();
   int getShakingCount();
+  void resetShakingCount();
   void plusShakingCount();
-  bool winner_ = false;
+  bool winner_= false;
 
-private:
+ private:
   std::vector<Hwatoo> hand_list_;
   std::vector<Hwatoo>::iterator itor;
   std::string player_name_;
   int go_count_ = 0;
 
-  // score °ü·Ã
+  // score ê´€ë ¨
   int temp_score_ = 0;
   int score_ = 0;
   int G_point_ = 0;
@@ -57,4 +58,4 @@ private:
   void calP();
 };
 
-#endif  // PLAYER_H
+#endif  // GOSTOP_PLAYER_H
