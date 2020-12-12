@@ -1,32 +1,32 @@
 
 # GoStop(고스톱) 게임 구현하기
 
-### 클래스별 정의 (클래스 주요내용)
+## 클래스별 정의 (클래스 주요내용)
 
-## Board
+### Board
  출력을 담당하는 부분으로 
  플레이어들의 이름을 순서대로 입력받을 수 있도록 하고,
  각각의 플레이어들의 손패, 바닥패 들을 출력할 수 있는 부분
 
-## CardListManager
+###CardListManager
 
-## Deck
+### Deck
 
-## Floor 
+### Floor 
 
-## Hwatoo
+### Hwatoo
 
-## Player
+### Player
 
-## Result 
+### Result 
 
-## Rule
+### Rule
 
-## main
+### main
 
 
 
-### 컴파일 및 실행방법 (게임 수행 방법)
+## 컴파일 및 실행방법 (게임 수행 방법)
 
 
 이 프로그램은 한 번 게임이 끝나면 프로그램이 종료되도록 설계되었습니다.
