@@ -7,14 +7,13 @@
 #include "deck.h"
 
 class Rule {
-public:
+ public:
   void checkChongtong(Player* player);
   void getCardsFromFloorWithBreak(Deck* deck, Player* now_p_, Hwatoo* card);
   void getCardsFromFloor(Deck* deck, Player* now_p_, Hwatoo* card);
-  void getCardsFromHand(Player* now_p_, Hwatoo* pick_card);
   void getCardsFromOthers(Player* now_p_, Player* other1_p_, Player* other2_p_);
 
-private:
+ private:
   std::vector<Hwatoo>::iterator itor;
 };
 
