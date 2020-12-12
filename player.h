@@ -1,5 +1,5 @@
-#ifndef GOSTOP_PLAYER_H
-#define GOSTOP_PLAYER_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <iostream>
 #include <vector>
@@ -57,4 +57,4 @@ class Player {
   void calP();
 };
 
-#endif  // GOSTOP_PLAYER_H
+#endif  // PLAYER_H
