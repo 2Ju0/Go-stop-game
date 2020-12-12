@@ -1,5 +1,5 @@
-#ifndef GOSTOP_DECK_H_
-#define GOSTOP_DECK_H_
+#ifndef DECK_H
+#define DECK_H
 
 #include <ctime>
 #include <iostream>
@@ -32,4 +32,4 @@ class Deck {
   void distributeCard();
 };
 
-#endif  // GOSTOP_DECK_H_
+#endif  // DECK_H
