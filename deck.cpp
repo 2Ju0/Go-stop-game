@@ -6,83 +6,43 @@ Deck::Deck(Hwatoo* card) {  // Constructor
   }
 }
 
-void Deck::reset(Hwatoo* card) {  // Deckì˜ ë©¤ë²„ ë³€ìˆ˜ ì´ˆê¸°í™”
-  for (int i = 0; i < number_of_card_; i++) {
-    card_list_[i] = card[i];
-  }
-  clear_deck();
-  floor.reset();
-  player1.reset();
-  player2.reset();
-  player3.reset();
-}
-
-Hwatoo Deck::pop_card() {  // ë±ì—ì„œ í•œì¥ ë’¤ì§‘ê¸°
-  Hwatoo card = this->deck_list_.front();
-  this->deck_list_.pop();
-  return card;
-}
-
-void Deck::divide_card() {
-  // 2ë²ˆ ë°˜ë³µí•˜ì—¬ ë°”ë‹¥ì—ëŠ” 6ì¥(3ì¥ì”© ë‘ë²ˆ), í”Œë ˆì´ì–´ëŠ” 7ì¥ì”©(4ì¥,3ì¥)
-  // ëŒì•„ê°€ë„ë¡ í•œë‹¤.
+void Deck::distributeCard() {
+  // 2¹ø ¹İº¹ÇÏ¿© ¹Ù´Ú¿¡´Â 6Àå(3Àå¾¿ µÎ¹ø), ÇÃ·¹ÀÌ¾î´Â 7Àå¾¿(4Àå,3Àå)
+  // µ¹¾Æ°¡µµ·Ï ÇÑ´Ù.
   int count = 4;
-
-  for (int i = 0; i < 2; i++) {    // ë‘ë²ˆì— ê±¸ì³ ë‚˜ëˆ ì¤€ë‹¤.
-    for (int i = 0; i < 3; i++) {  // ë°”ë‹¥ì— 6ì¥ : 3ì¥ì”© ë‘ë²ˆ
+  // std::cout << "distribute" << std::endl;
+  for (int i = 0; i < 2; i++) {    // µÎ¹ø¿¡ °ÉÃÄ ³ª´²ÁØ´Ù.
+    for (int i = 0; i < 3; i++) {  // ¹Ù´Ú¿¡ 6Àå : 3Àå¾¿ µÎ¹ø
       Hwatoo card = deck_list_.front();
       deck_list_.pop();
-      floor.add_card(card);
+      floor.addCard(card);
     }
 
     for (int i = 0; i < count; i++) {
-      Hwatoo card = deck_list_.front();  // player1 ì—ê²Œ 4ì¥, 3ì¥
+      Hwatoo card = deck_list_.front();  // player1 ¿¡°Ô 4Àå, 3Àå
       deck_list_.pop();
-      player1.add_card(card);
+      player1.addCard(card);
 
-      card = deck_list_.front();  // player2 ì—ê²Œ 4ì¥, 3ì¥
+      card = deck_list_.front();  // player2 ¿¡°Ô 4Àå, 3Àå
       deck_list_.pop();
-      player2.add_card(card);
+      player2.addCard(card);
 
-      card = deck_list_.front();  // player3 ì—ê²Œ 4ì¥, 3ì¥
+      card = deck_list_.front();  // player3 ¿¡°Ô 4Àå, 3Àå
       deck_list_.pop();
-      player3.add_card(card);
+      player3.addCard(card);
     }
     count--;
   }
 }
 
-void Deck::game_start() {  // ê²Œì„ ì‹œì‘ ì „ ì¹´ë“œ ì„ê¸° + deck(queue)ì— ë„£ê¸° +
-                           // ì¹´ë“œ ë¶„ë°°( ë°”ë‹¥, í”Œë ˆì´ì–´)
-  std::cout << "<ê³ ìŠ¤í†± ê²Œì„ì„ ì‹œì‘í•©ë‹ˆë‹¤>" << std::endl;
-  std::cout << "=========================================================="
-            << std::endl;
-  std::cout << "player1ì˜ ì´ë¦„ì„ ì„¤ì •í•˜ì„¸ìš” : ";
-  std::string name1, name2, name3;
-  std::cin >> name1;
-  player1.set_name(name1);
-  std::cout << "player1ì˜ ì´ë¦„: " << this->player1.get_name() << std::endl;
-
-  std::cout << "player2ì˜ ì´ë¦„ì„ ì„¤ì •í•˜ì„¸ìš” : ";
-  std::cin >> name2;
-  player2.set_name(name2);
-  std::cout << "player2ì˜ ì´ë¦„: " << this->player2.get_name() << std::endl;
-
-  std::cout << "player3ì˜ ì´ë¦„ì„ ì„¤ì •í•˜ì„¸ìš” : ";
-  std::cin >> name3;
-  player3.set_name(name3);
-  std::cout << "player3ì˜ ì´ë¦„: " << this->player3.get_name() << std::endl;
-  card_shuffle();
-  input_deck();
-  divide_card();
+void Deck::gameStart() {  // °ÔÀÓ ½ÃÀÛ Àü Ä«µå ¼¯±â + deck(queue)¿¡ ³Ö±â +
+                           // Ä«µå ºĞ¹è( ¹Ù´Ú, ÇÃ·¹ÀÌ¾î)
+  cardShuffle();
+  inputDeck();
+  distributeCard();
 }
 
-void Deck::clear_deck() {  // deck ì´ˆê¸°í™”
-  std::queue<Hwatoo> empty;
-  std::swap(this->deck_list_, empty);
-}
-
-void Deck::card_shuffle() {  // ì¹´ë“œ ì„ê¸°
+void Deck::cardShuffle() {  // Ä«µå ¼¯±â
   srand((unsigned)time(NULL));
   for (int i = 0; i < number_of_card_; i++) {
     int random = rand() % (number_of_card_);
@@ -92,10 +52,8 @@ void Deck::card_shuffle() {  // ì¹´ë“œ ì„ê¸°
   }
 }
 
-void Deck::input_deck() {  // ì¹´ë“œ ë¦¬ìŠ¤íŠ¸ë¥¼ ë±ì— ë„£ê¸°
+void Deck::inputDeck() {  // Ä«µå ¸®½ºÆ®¸¦ µ¦¿¡ ³Ö±â
   for (Hwatoo value : card_list_) {
     deck_list_.push(value);
   }
 }
-
-
