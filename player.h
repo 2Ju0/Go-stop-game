@@ -28,7 +28,6 @@ class Player {
   int getBbukCount();
   void plusBbukCount();
   int getShakingCount();
-  void resetShakingCount();
   void plusShakingCount();
   bool winner_= false;
 
