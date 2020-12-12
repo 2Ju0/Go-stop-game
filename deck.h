@@ -1,5 +1,5 @@
-#ifndef DECK_H
-#define DECK_H
+#ifndef GOSTOP_DECK_H_
+#define GOSTOP_DECK_H_
 
 #include <ctime>
 #include <iostream>
@@ -11,24 +11,25 @@
 #include "player.h"
 
 class Deck {
-public:
+ public:
   std::vector<Hwatoo>
-    card_list_;  // main¹® Ãâ·Â À§ÇØ Àá½Ã publicÀ¸·Î (¿ø·¡´Â private)
+      card_list_;
   std::queue<Hwatoo>
-    deck_list_;  // deckÀÌ °¡Áö´Â ÆĞ ¸®½ºÆ®(¸¶Âù°¡Áö·Î ¿ø·¡ private)
-  Floor floor = Floor();               // floor °´Ã¼
-  Player player1 = Player("player1");  // player1 °´Ã¼
-  Player player2 = Player("player2");  // player2 °´Ã¼
-  Player player3 = Player("player3");  // player3 °´Ã¼
+      deck_list_;  // deckì´ ê°€ì§€ëŠ” íŒ¨ ë¦¬ìŠ¤íŠ¸
+  Floor floor = Floor();               // floor ê°ì²´
+  Player player1 = Player("player1");  // player1 ê°ì²´
+  Player player2 = Player("player2");  // player2 ê°ì²´
+  Player player3 = Player("player3");  // player3 ê°ì²´
 
   Deck(Hwatoo* card);  // constructor
   void gameStart();
 
-private:
-  const int number_of_card_ = 48;  // Ä«µå °³¼ö 48°³·Î °íÁ¤
+ private:
+  const int number_of_card_ = 48;  // ì¹´ë“œ ê°œìˆ˜ 48ê°œë¡œ ê³ ì •
+  void clearDeck();
   void cardShuffle();
   void inputDeck();
   void distributeCard();
 };
 
-#endif  // DECK_H
+#endif  // GOSTOP_DECK_H_
