@@ -165,7 +165,13 @@ int main() {
           now_p_->my_card_list_.eatCard(&pick_card);
           rule.getCardsFromFloorWithBreak(&deck, now_p_, &pick_card);
           // 손 패에서 같은 월 카드 찾기 위한 리스트 생성
-          rule.getCardsFromHand(player_list[i], &deck_card);
+          std::vector<Hwatoo> list_h = now_p_->sameCardList(pick_card);
+          // 손 패에서 같은 월 카드 찾기 위한 리스트 생성
+          for (itor = list_h.begin(); itor != list_h.end(); ++itor) {
+            player_list[i]->my_card_list_.eatCard(&(*itor));
+            player_list[i]->removeCard(*itor);
+            // 같은 월 카드 먹은패로 이동, 손 패에서 지우기
+          }
 
           if (deck.floor.sameCardCount(deck_card) == 0) {
             std::cout << "덱에서 뽑은 카드가 바닥 카드와 0개 같은 경우)"
@@ -218,13 +224,12 @@ int main() {
                       << std::endl;
           }
         } else {
-          std::cout << " 폭탄으로 내지 않고 1장씩 따로 내고," << std::endl
-                    << std::endl;
+          std::cout << " 폭탄으로 내지 않고 1장씩 따로 내고," << std::endl;
           if (deck.floor.sameCardCount(deck_card) == 0) {
-            if (pick_card.isSame(deck_card)) {  // 쪽 상황
-              std::cout << " 덱에서 뽑은 카드가 손에서 낸 카드와 같은 경우)"
+            std::cout << " 덱에서 뽑은 카드가 바닥과 0개 같은 경우)"             
                         << std::endl
-                        << std::endl;
+                      << std::endl;
+            if (pick_card.isSame(deck_card)) {  // 쪽 상황
               now_p_->my_card_list_.eatCard(&pick_card);
               now_p_->my_card_list_.eatCard(&deck_card);
               // 쪽으로 인한 1장씩 뺏어오기
@@ -232,6 +237,9 @@ int main() {
               std::cout << " 쪽 입니다!! 1장씩 뺏어옵니다." << std::endl
                         << std::endl;
             } else {  // 어떤 카드도 일치하지 않는 경우
+              std::cout << " > 뽑은 카드와 덱카드가 아무것도 일치하지 않습니다"
+                        << std::endl
+                        << std::endl;
               deck.floor.addCard(pick_card);
               deck.floor.addCard(deck_card);
             }
